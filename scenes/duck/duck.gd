@@ -1,9 +1,15 @@
 extends CharacterBody2D
 
 @onready var sprite = $Sprite2D
+@onready var gun_position = $GunPosition
+
+@export var laser_scene: PackedScene
 
 const MAX_SPEED = 300.0
 const ACCEL_PER_SECOND = 600.0
+
+var last_shot = 0 # time since last fired shot
+var fire_rate = 140 # in milliseconds
 
 func _ready() -> void:
 	velocity = Vector2(0, 0)
@@ -16,7 +22,21 @@ func _physics_process(delta: float) -> void:
 	var direction = (mouse_position - global_position).normalized()
 	rotation = Vector2(0.0, 1.0).angle_to(direction)
 	# -----------------------------------------
-	# manage speed
+	# manage shooting
+	# -----------------------------------------
+	var can_shoot = false
+	var now = Time.get_ticks_msec()
+	if (now - last_shot) >= fire_rate:
+		can_shoot = true
+	
+	if Input.is_action_pressed("Shoot") and can_shoot:
+		last_shot = now
+		var laser = laser_scene.instantiate()
+		laser.direction = direction
+		laser.global_position = gun_position.global_position
+		add_sibling(laser)
+	# -----------------------------------------
+	# manage movement
 	# -----------------------------------------
 	if Input.is_action_pressed("Accelerate"):
 		velocity += ACCEL_PER_SECOND * direction * delta

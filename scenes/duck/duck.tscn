@@ -1,18 +1,24 @@
-[gd_scene load_steps=3 format=3 uid="uid://dduc3sc1hbdp4"]
+[gd_scene load_steps=4 format=3 uid="uid://dduc3sc1hbdp4"]
 
 [ext_resource type="Texture2D" uid="uid://g1lm0yyoo3nc" path="res://assets/sprites/duck.png" id="1_7eeg8"]
 [ext_resource type="Script" path="res://scenes/duck/duck.gd" id="1_wetyh"]
+[ext_resource type="PackedScene" uid="uid://cx6aereyhoty4" path="res://scenes/laser/laser.tscn" id="2_ocl7a"]
 
 [node name="Duck" type="CharacterBody2D"]
-position = Vector2(540, 310)
+position = Vector2(537, 312)
 motion_mode = 1
 wall_min_slide_angle = 0.0
 script = ExtResource("1_wetyh")
-metadata/_edit_group_ = true
+laser_scene = ExtResource("2_ocl7a")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="."]
+z_index = 1
+polygon = PackedVector2Array(-8, -3, 0, -13, 9, -3, 0, 13)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
 rotation = 1.5708
 texture = ExtResource("1_7eeg8")
+
+[node name="GunPosition" type="Node2D" parent="."]
+position = Vector2(-8.5, 12.915)
