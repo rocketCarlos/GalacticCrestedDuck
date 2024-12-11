@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://ull5mrnilukr"]
+[gd_scene load_steps=8 format=3 uid="uid://ull5mrnilukr"]
 
 [ext_resource type="Script" path="res://scenes/Eye/eye.gd" id="1_3xkbf"]
 [ext_resource type="Texture2D" uid="uid://bvui4g3e5veae" path="res://assets/sprites/eye.png" id="2_oopdr"]
+[ext_resource type="PackedScene" uid="uid://cfff6oyvj81gi" path="res://scenes/EnemyCore/enemy_core.tscn" id="3_im0eu"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3b08n"]
 atlas = ExtResource("2_oopdr")
@@ -33,11 +34,10 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_oia3x"]
 radius = 16.0312
 
-[node name="Eye" type="CharacterBody2D"]
+[node name="Eye" type="Area2D"]
 texture_filter = 3
 collision_layer = 4
-collision_mask = 0
-motion_mode = 1
+collision_mask = 2
 script = ExtResource("1_3xkbf")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -45,3 +45,12 @@ sprite_frames = SubResource("SpriteFrames_go6fg")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_oia3x")
+
+[node name="EnemyCore" parent="." instance=ExtResource("3_im0eu")]
+
+[node name="AngryTimer" type="Timer" parent="."]
+wait_time = 10.0
+one_shot = true
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="timeout" from="AngryTimer" to="." method="_on_angry_timer_timeout"]

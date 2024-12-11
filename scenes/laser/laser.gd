@@ -23,7 +23,7 @@ func _ready() -> void:
 	rotation = Vector2(0.0, 1.0).angle_to(direction)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _physics_process(delta: float) -> void:
+func _process(delta: float) -> void:
 	# bullet disappears when travelled max_distance units
 	if travelled >= max_distance:
 		queue_free()
@@ -34,6 +34,6 @@ func _physics_process(delta: float) -> void:
 #endregion
 
 #region signal functions
-func _on_body_entered(area):
+func _on_area_entered(area: Area2D) -> void:
 	queue_free()
 #endregion
