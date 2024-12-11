@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://cfff6oyvj81gi"]
+
+[ext_resource type="Script" path="res://scenes/EnemyCore/enemy_core.gd" id="1_tp11f"]
+
+[node name="EnemyCore" type="Node"]
+script = ExtResource("1_tp11f")

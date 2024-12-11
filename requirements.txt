@@ -4,6 +4,6 @@ MUST HAVE
 [] duck can get damage
 [] duck can die
 [] enemies can spawn
-[] enemies can get damage
+[x] enemies can get damage
 [] enemies can die
 [] circular space where the duck can move around, but not leave. Enemies spawn outside

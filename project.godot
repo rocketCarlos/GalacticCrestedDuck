@@ -11,9 +11,13 @@ config_version=5
 [application]
 
 config/name="GalacticCrestedDuck"
-run/main_scene="res://scenes/duck/duck.tscn"
+run/main_scene="res://scenes/MockScene/mock_scene.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
 config/icon="res://icon.svg"
+
+[autoload]
+
+Globals="*res://globals/globals.gd"
 
 [display]
 
@@ -36,6 +40,7 @@ Shoot={
 
 2d_physics/layer_1="duck"
 2d_physics/layer_2="laser"
+2d_physics/layer_3="enemies"
 
 [rendering]
 

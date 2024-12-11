@@ -1,8 +1,20 @@
 extends CharacterBody2D
 
+'''
+Duck
+
+This is the Galactic Duck that the player plays as. It can shoot with left click and move with right
+click. When holding right click, the duck accelerates towards the mouse position. When right click 
+is released, the duck deaccelerates. Params to define the movement behaviour are MAX_SPEED,  
+and ACCEL_PER_SECOND. User can hold left click to shoot, being the fire rate set by fire_rate
+'''
+
+#region scene nodes
 @onready var sprite = $Sprite2D
 @onready var gun_position = $GunPosition
+#endregion
 
+#region attributes
 @export var laser_scene: PackedScene
 
 const MAX_SPEED = 300.0
@@ -10,9 +22,12 @@ const ACCEL_PER_SECOND = 600.0
 
 var last_shot = 0 # time since last fired shot
 var fire_rate = 140 # in milliseconds
+#endregion
 
+#region ready and process
 func _ready() -> void:
 	velocity = Vector2(0, 0)
+	Globals.duck = self
 
 func _physics_process(delta: float) -> void:
 	# -----------------------------------------
@@ -49,4 +64,6 @@ func _physics_process(delta: float) -> void:
 			# Prevent overshooting and stop when speed is very low
 			if velocity.length() < 10.0:  # Threshold for stopping
 				velocity = Vector2(0, 0)
+				
 	move_and_slide()
+#endregion

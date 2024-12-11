@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://dtfbumnqm18yh"]
+
+[ext_resource type="PackedScene" uid="uid://ull5mrnilukr" path="res://scenes/Eye/eye.tscn" id="1_60jo4"]
+[ext_resource type="PackedScene" uid="uid://dduc3sc1hbdp4" path="res://scenes/duck/duck.tscn" id="2_1iq26"]
+
+[node name="MockScene" type="Node"]
+
+[node name="Eye" parent="." instance=ExtResource("1_60jo4")]
+position = Vector2(537, 312)
+
+[node name="Duck" parent="." instance=ExtResource("2_1iq26")]
+position = Vector2(371, 307)
