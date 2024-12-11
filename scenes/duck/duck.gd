@@ -47,7 +47,6 @@ func _physics_process(delta: float) -> void:
 		if velocity.length() > 0:
 			velocity -= velocity.normalized() * ACCEL_PER_SECOND * delta
 			# Prevent overshooting and stop when speed is very low
-			if velocity.length() < 1.0:  # Threshold for stopping
+			if velocity.length() < 10.0:  # Threshold for stopping
 				velocity = Vector2(0, 0)
-		
 	move_and_slide()

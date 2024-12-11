@@ -1,23 +1,23 @@
 [gd_scene load_steps=4 format=3 uid="uid://cx6aereyhoty4"]
 
-[ext_resource type="Texture2D" uid="uid://dy87swq515t1k" path="res://assets/sprites/laser.png" id="1_j8ynd"]
 [ext_resource type="Script" path="res://scenes/laser/laser.gd" id="1_qh701"]
+[ext_resource type="Texture2D" uid="uid://daxdccu3tq6cn" path="res://assets/sprites/laser_resized.png" id="2_h2qrn"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g76tn"]
-size = Vector2(3, 12)
+size = Vector2(6, 22)
 
 [node name="Laser" type="CharacterBody2D"]
-texture_filter = 1
+z_index = -1
+texture_filter = 3
 collision_layer = 2
 collision_mask = 2
 motion_mode = 1
 wall_min_slide_angle = 0.0
 script = ExtResource("1_qh701")
-metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_g76tn")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 rotation = 1.5708
-texture = ExtResource("1_j8ynd")
+texture = ExtResource("2_h2qrn")
