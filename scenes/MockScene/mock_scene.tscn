@@ -5,8 +5,17 @@
 
 [node name="MockScene" type="Node"]
 
+[node name="Duck" parent="." instance=ExtResource("2_1iq26")]
+position = Vector2(371, 307)
+
 [node name="Eye" parent="." instance=ExtResource("1_60jo4")]
 position = Vector2(537, 312)
 
-[node name="Duck" parent="." instance=ExtResource("2_1iq26")]
-position = Vector2(371, 307)
+[node name="Eye2" parent="." instance=ExtResource("1_60jo4")]
+position = Vector2(537, 312)
+
+[node name="Eye3" parent="." instance=ExtResource("1_60jo4")]
+position = Vector2(537, 312)
+
+[node name="Eye4" parent="." instance=ExtResource("1_60jo4")]
+position = Vector2(537, 312)

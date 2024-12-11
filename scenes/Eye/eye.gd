@@ -3,7 +3,8 @@ extends Area2D
 '''
 Eye ball enemy
 
-First, it is slow. When hit by the first time, it gets angry and moves faster
+First, it is slow. When hit by the first time, it gets angry and moves faster. 
+Always moves towards the player
 '''
 
 #region scene nodes
@@ -56,17 +57,17 @@ func _process(delta: float) -> void:
 	position += direction * current_speed * delta
 #endregion
 
-
+#region signal functions
 func _on_area_entered(area: Area2D) -> void:
 	# eye gets angry when hit
 	behaviour = 1
 	angry_timer.start()
 	core.hit()
-	
+	# despawn if lost all hp
 	if core.hp <= 0:
 		queue_free()
-
 
 func _on_angry_timer_timeout() -> void:
 	# eye turns back to normal after the timeout
 	behaviour = 0
+#endregion

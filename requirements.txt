@@ -1,10 +1,10 @@
 MUST HAVE
 [x] duck can move
 [x] duck can shoot
-[] duck can get damage
-[] duck can die
+[x] duck can get damage
+[x] duck can die
 [] enemies can spawn
 [x] enemies can get damage
-[] enemies move towards the player
-[] enemies can die
+[x] enemies move towards the player
+[x] enemies can die
 [] circular space where the duck can move around, but not leave. Enemies spawn outside
