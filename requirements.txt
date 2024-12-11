@@ -8,3 +8,26 @@ MUST HAVE
 [x] enemies move towards the player
 [x] enemies can die
 [] circular space where the duck can move around, but not leave. Enemies spawn outside
+[] replay button/system
+[] score system (time alive)
+[] sfx:
+	[] laser
+	[] duck hit
+	[] enemy hit
+[] music:
+	[] background music
+
+NICE TO HAVE
+[] duck animations:
+	[] hit
+[] game feel:
+	[] screen shakes
+	[] particles for laser hits
+	[] despawning animaions
+	
+OPTIONAL
+[] power ups:
+	[] strawberry milk (more hp)
+	[] green tea (better fire rate)
+[] more enemies:
+	[] ?
