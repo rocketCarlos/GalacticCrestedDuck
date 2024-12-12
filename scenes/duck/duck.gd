@@ -66,7 +66,14 @@ func _physics_process(delta: float) -> void:
 			if Input.is_action_pressed("Shoot") and can_shoot:
 				last_shot = now
 				var laser = laser_scene.instantiate()
-				laser.direction = direction
+				# decide the laser direction depending on the distance to the mouse
+				if global_position.distance_to(mouse_position) > 225:
+					# if far away, shoot pointing exactly at the mouse
+					laser.direction = (mouse_position - gun_position.global_position).normalized()
+				else:
+					# if too close, shoot straight
+					laser.direction = direction
+				
 				laser.global_position = gun_position.global_position
 				add_sibling(laser)
 			# -----------------------------------------
