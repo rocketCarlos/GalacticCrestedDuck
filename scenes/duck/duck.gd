@@ -31,6 +31,8 @@ const MAX_SPEED = 300.0
 const ACCEL_PER_SECOND = 600.0
 const DEACCEL_PER_SECOND = 300.00
 
+const LASER_THRESHOLD = 225.0
+
 var last_shot = 0 # time since last fired shot
 var fire_rate = 140 # in milliseconds
 
@@ -67,7 +69,7 @@ func _physics_process(delta: float) -> void:
 				last_shot = now
 				var laser = laser_scene.instantiate()
 				# decide the laser direction depending on the distance to the mouse
-				if global_position.distance_to(mouse_position) > 225:
+				if global_position.distance_to(mouse_position) > LASER_THRESHOLD:
 					# if far away, shoot pointing exactly at the mouse
 					laser.direction = (mouse_position - gun_position.global_position).normalized()
 				else:
