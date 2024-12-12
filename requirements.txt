@@ -7,7 +7,7 @@ MUST HAVE
 [x] enemies can get damage
 [x] enemies move towards the player
 [x] enemies can die
-[] circular space where the duck can move around, but not leave. Enemies spawn outside
+[x] circular space where the duck can move around, but not leave. Enemies spawn outside
 [] replay button/system
 [] score system (time alive)
 [] sfx:

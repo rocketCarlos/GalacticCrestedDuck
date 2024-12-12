@@ -1,22 +1,15 @@
-[gd_scene load_steps=8 format=3 uid="uid://ull5mrnilukr"]
+[gd_scene load_steps=7 format=3 uid="uid://ull5mrnilukr"]
 
 [ext_resource type="Script" path="res://scenes/Eye/eye.gd" id="1_3xkbf"]
-[ext_resource type="Texture2D" uid="uid://bvui4g3e5veae" path="res://assets/sprites/eye.png" id="2_oopdr"]
+[ext_resource type="Texture2D" uid="uid://2rdfmtoib8si" path="res://assets/sprites/eye2.png" id="2_v7l5p"]
 [ext_resource type="PackedScene" uid="uid://cfff6oyvj81gi" path="res://scenes/EnemyCore/enemy_core.tscn" id="3_im0eu"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_3b08n"]
-atlas = ExtResource("2_oopdr")
-region = Rect2(32, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_brhql"]
-atlas = ExtResource("2_oopdr")
-region = Rect2(0, 0, 32, 32)
+[ext_resource type="Texture2D" uid="uid://1ivwnfr5w0ra" path="res://assets/sprites/eye1.png" id="3_nt55g"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_go6fg"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_3b08n")
+"texture": ExtResource("2_v7l5p")
 }],
 "loop": true,
 "name": &"angry",
@@ -24,7 +17,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_brhql")
+"texture": ExtResource("3_nt55g")
 }],
 "loop": true,
 "name": &"default",
@@ -32,7 +25,7 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_oia3x"]
-radius = 16.0312
+radius = 32.0156
 
 [node name="Eye" type="Area2D"]
 texture_filter = 3

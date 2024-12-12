@@ -45,7 +45,7 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	match current_state:
 		STATE.DEAD:
-			# if dead, do nothin
+			# if dead, do nothing
 			pass
 		
 		_: # if default or hit, act normally
@@ -90,14 +90,17 @@ func _physics_process(delta: float) -> void:
 
 #region signal functions
 func _on_damage_area_area_entered(area: Area2D) -> void:
-	# when hit, start the immunity time
-	current_state = STATE.HIT
-	hit_timer.start()
-	damage_hitbox.set_deferred(&"disabled", true)
-	
 	hp -= 1
 	if hp <= 0:
 		current_state = STATE.DEAD
+	else:
+		# when hit, start the immunity time
+		current_state = STATE.HIT
+		hit_timer.start()
+		
+	damage_hitbox.set_deferred(&"disabled", true)
+
+		
 		
 func _on_hit_timer_timeout() -> void:
 	# when the hit timer ends, go back to default mode and collisions are registered again

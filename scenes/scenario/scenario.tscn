@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://cjs3oukixs1hn"]
+
+[ext_resource type="Texture2D" uid="uid://ke4qt3p67dh" path="res://assets/sprites/background.png" id="1_2v7pr"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_1rrl3"]
+friction = 0.0
+rough = true
+bounce = 1.0
+
+[node name="Scenario" type="Sprite2D"]
+texture_filter = 3
+texture = ExtResource("1_2v7pr")
+offset = Vector2(576, 324)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+physics_material_override = SubResource("PhysicsMaterial_1rrl3")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+build_mode = 1
+polygon = PackedVector2Array(224, 139, 300, 102, 405, 72, 495, 58, 553, 54, 659, 57, 765, 74, 857, 104, 924, 136, 991, 186, 1030, 231, 1053, 287, 1056, 341, 1050, 378, 1016, 437, 972, 478, 939, 502, 888, 532, 805, 562, 701, 586, 605, 593, 502, 591, 408, 580, 296, 547, 210, 503, 148, 451, 106, 388, 92, 327, 106, 260, 133, 217, 170, 177)
