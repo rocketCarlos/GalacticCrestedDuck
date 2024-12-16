@@ -36,7 +36,7 @@ const LASER_THRESHOLD = 225.0
 var last_shot = 0 # time since last fired shot
 var fire_rate = 140 # in milliseconds
 
-var hp = 25
+var hp = 15
 #endregion
 
 #region ready and process
