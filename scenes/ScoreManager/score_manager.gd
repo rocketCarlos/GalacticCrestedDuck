@@ -16,12 +16,15 @@ var score: int:
 		score = value
 		score_label.text = str(score)
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
+func _restart() -> void:
 	score = 0
 	score_timer.start()
-	Globals.mob_despawned.connect(_on_mob_despawned)
 
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	Globals.mob_despawned.connect(_on_mob_despawned)
+	Globals.restart.connect(_restart)
+	Globals.game_over.connect(_on_game_over)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -31,6 +34,8 @@ func _process(delta: float) -> void:
 func _on_mob_despawned() -> void:
 	score += POINTS_PER_ELIM
 
-
 func _on_score_timer_timeout() -> void:
 	score += 1
+
+func _on_game_over() -> void:
+	score_timer.stop()

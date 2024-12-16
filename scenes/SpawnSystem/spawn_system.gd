@@ -80,5 +80,5 @@ func spawn(mob: PackedScene) -> void:
 	# Set the mob's position to a random location.
 	instance.position = path.position
 
-	# Spawn the mob by adding it to the Main scene.
-	add_child(instance)
+	# Spawn the mob by adding it to the scene.
+	add_sibling(instance)

@@ -8,8 +8,9 @@ MUST HAVE
 [x] enemies move towards the player
 [x] enemies can die
 [x] circular space where the duck can move around, but not leave. Enemies spawn outside
-[] replay button/system
+[x] replay button/system
 [x] score system (time alive)
+[x] input information ("tutorial")
 [] sfx:
 	[] laser
 	[] duck hit
@@ -24,6 +25,7 @@ NICE TO HAVE
 	[] screen shakes
 	[] particles for laser hits
 	[] despawning animaions
+
 	
 OPTIONAL
 [] power ups:

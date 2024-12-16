@@ -30,14 +30,13 @@ anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
 offset_left = 50.0
-offset_top = -7.0
+offset_top = -6.5
 offset_right = 77.0
-offset_bottom = 5.0
+offset_bottom = 5.5
 grow_vertical = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("1_vf6jx")
-text = "0 "
 
 [node name="ScoreTimer" type="Timer" parent="."]
 

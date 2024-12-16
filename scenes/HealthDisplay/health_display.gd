@@ -13,10 +13,13 @@ var hp: int:
 		hp = value
 		hp_label.text = str(hp)
 
+func _restart() -> void:
+	hp = Globals.duck.hp
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	hp = Globals.duck.hp
 	Globals.duck_hit.connect(_on_duck_hit)
+	Globals.restart.connect(_restart)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

@@ -1,26 +1,78 @@
-[gd_scene load_steps=6 format=3 uid="uid://dtfbumnqm18yh"]
+[gd_scene load_steps=12 format=3 uid="uid://dtfbumnqm18yh"]
 
 [ext_resource type="PackedScene" uid="uid://cjs3oukixs1hn" path="res://scenes/scenario/scenario.tscn" id="1_fqy12"]
+[ext_resource type="Script" path="res://scenes/MainScene/main_scene.gd" id="1_inuy1"]
 [ext_resource type="PackedScene" uid="uid://dduc3sc1hbdp4" path="res://scenes/duck/duck.tscn" id="2_n6hag"]
 [ext_resource type="PackedScene" uid="uid://cjm3pe5p8b151" path="res://scenes/SpawnSystem/spawn_system.tscn" id="3_cfgy0"]
 [ext_resource type="PackedScene" uid="uid://cipf5vwhssaye" path="res://scenes/ScoreManager/score_manager.tscn" id="4_id13b"]
 [ext_resource type="PackedScene" uid="uid://cm76rpky6hogj" path="res://scenes/HealthDisplay/health_display.tscn" id="5_wpstl"]
+[ext_resource type="Texture2D" uid="uid://dciahi0fg4r2b" path="res://assets/sprites/play_button1.png" id="6_jcsek"]
+[ext_resource type="Texture2D" uid="uid://bdtthf36rnsmf" path="res://assets/sprites/play_button3.png" id="7_5p2m0"]
+[ext_resource type="Texture2D" uid="uid://b5duauq50pqyy" path="res://assets/sprites/play_button2.png" id="8_jvs33"]
+[ext_resource type="Texture2D" uid="uid://bxmkamii4mc7y" path="res://assets/sprites/indications.png" id="10_8xyye"]
+[ext_resource type="FontFile" uid="uid://cc7l58qxrrgtu" path="res://assets/WenderFont1.ttf" id="10_ejqcj"]
 
 [node name="MainScene" type="Node"]
+script = ExtResource("1_inuy1")
+spawn_system_scene = ExtResource("3_cfgy0")
 
 [node name="Scenario" parent="." instance=ExtResource("1_fqy12")]
 z_index = -5
 
 [node name="Duck" parent="." instance=ExtResource("2_n6hag")]
-position = Vector2(371, 307)
-
-[node name="SpawnSystem" parent="." instance=ExtResource("3_cfgy0")]
+position = Vector2(572, 230)
 
 [node name="ScoreManager" parent="." instance=ExtResource("4_id13b")]
+z_index = 1
 offset_left = -30.0
 offset_top = -288.0
 offset_right = 18.0
 offset_bottom = -275.0
 
 [node name="HealthDisplay" parent="." instance=ExtResource("5_wpstl")]
+z_index = 1
 position = Vector2(572, 22)
+
+[node name="PlayButton" type="TextureButton" parent="."]
+z_index = 1
+texture_filter = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -64.0
+offset_top = -16.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(2, 2)
+size_flags_horizontal = 6
+size_flags_vertical = 6
+texture_normal = ExtResource("6_jcsek")
+texture_pressed = ExtResource("7_5p2m0")
+texture_hover = ExtResource("8_jvs33")
+
+[node name="GameOverText" type="Label" parent="PlayButton"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -86.5
+offset_top = -30.5
+offset_right = 84.5
+offset_bottom = -18.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("10_ejqcj")
+text = "Game over! Try again?"
+
+[node name="Indications" type="Sprite2D" parent="PlayButton"]
+position = Vector2(35, 56)
+texture = ExtResource("10_8xyye")
+
+[connection signal="pressed" from="PlayButton" to="." method="_on_play_button_pressed"]

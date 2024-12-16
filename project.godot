@@ -23,6 +23,10 @@ Globals="*res://globals/globals.gd"
 
 window/stretch/mode="canvas_items"
 
+[global_group]
+
+Mobs="All the mobs"
+
 [input]
 
 Accelerate={

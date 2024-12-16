@@ -25,7 +25,7 @@ enum STATE {
 #region attributes
 @export var laser_scene: PackedScene
 
-var current_state = STATE.DEFAULT
+var current_state
 
 const MAX_SPEED = 300.0
 const ACCEL_PER_SECOND = 600.0
@@ -36,17 +36,24 @@ const LASER_THRESHOLD = 225.0
 var last_shot = 0 # time since last fired shot
 var fire_rate = 140 # in milliseconds
 
-var hp = 15
+var hp: int
 
 # ensures that the duck is hit only once per frame
 var already_hit: bool
 #endregion
 
-#region ready and process
-func _ready() -> void:
+#region restart, ready and process
+# called when the main scene emits the signal to restart the game
+func _restart() -> void:
 	velocity = Vector2(0, 0)
 	Globals.duck = self
 	already_hit = false
+	current_state = STATE.DEFAULT
+	hp = 15
+
+func _ready() -> void:
+	current_state = STATE.DEAD
+	Globals.restart.connect(_restart)
 
 func _physics_process(delta: float) -> void:
 	already_hit = false
@@ -110,6 +117,7 @@ func _on_damage_area_area_entered(area: Area2D) -> void:
 		already_hit = true
 		if hp <= 0:
 			current_state = STATE.DEAD
+			Globals.game_over.emit()
 		else:
 			# when hit, start the immunity time
 			current_state = STATE.HIT
