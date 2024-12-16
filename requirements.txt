@@ -3,13 +3,13 @@ MUST HAVE
 [x] duck can shoot
 [x] duck can get damage
 [x] duck can die
-[] enemies can spawn
+[x] enemies can spawn
 [x] enemies can get damage
 [x] enemies move towards the player
 [x] enemies can die
 [x] circular space where the duck can move around, but not leave. Enemies spawn outside
 [] replay button/system
-[] score system (time alive)
+[x] score system (time alive)
 [] sfx:
 	[] laser
 	[] duck hit
@@ -31,3 +31,6 @@ OPTIONAL
 	[] green tea (better fire rate)
 [] more enemies:
 	[] ?
+[] different enemies give different score
+[] ending "rounds" give extra score
+[] high score register

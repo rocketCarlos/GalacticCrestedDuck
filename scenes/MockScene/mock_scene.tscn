@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://dtfbumnqm18yh"]
+[gd_scene load_steps=5 format=3 uid="uid://dtfbumnqm18yh"]
 
 [ext_resource type="PackedScene" uid="uid://dduc3sc1hbdp4" path="res://scenes/duck/duck.tscn" id="2_1iq26"]
 [ext_resource type="PackedScene" uid="uid://cjs3oukixs1hn" path="res://scenes/scenario/scenario.tscn" id="3_7kwmj"]
+[ext_resource type="PackedScene" uid="uid://cipf5vwhssaye" path="res://scenes/ScoreManager/score_manager.tscn" id="4_7oxp2"]
 [ext_resource type="PackedScene" uid="uid://cjm3pe5p8b151" path="res://scenes/SpawnSystem/spawn_system.tscn" id="4_qi5o5"]
 
 [node name="MockScene" type="Node"]
@@ -13,3 +14,7 @@ z_index = -5
 position = Vector2(371, 307)
 
 [node name="SpawnSystem" parent="." instance=ExtResource("4_qi5o5")]
+
+[node name="ScoreManager" parent="." instance=ExtResource("4_7oxp2")]
+offset_top = -302.15
+offset_bottom = -289.15

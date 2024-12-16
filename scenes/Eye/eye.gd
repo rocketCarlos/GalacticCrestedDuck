@@ -65,6 +65,7 @@ func _on_area_entered(area: Area2D) -> void:
 	core.hit()
 	# despawn if lost all hp
 	if core.hp <= 0:
+		core.die()
 		queue_free()
 
 func _on_angry_timer_timeout() -> void:

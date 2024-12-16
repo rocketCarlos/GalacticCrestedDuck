@@ -35,9 +35,9 @@ func hit() -> void:
 	hp -= 1
 
 '''
-Called when the enemy dies to free the node
+Called when the enemy dies to free the node and compute score
 '''
 func die() -> void:
-	queue_free()
+	Globals.mob_despawned.emit()
 	
 #endregion
