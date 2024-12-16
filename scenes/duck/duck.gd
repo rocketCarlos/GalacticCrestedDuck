@@ -37,14 +37,19 @@ var last_shot = 0 # time since last fired shot
 var fire_rate = 140 # in milliseconds
 
 var hp = 15
+
+# ensures that the duck is hit only once per frame
+var already_hit: bool
 #endregion
 
 #region ready and process
 func _ready() -> void:
 	velocity = Vector2(0, 0)
 	Globals.duck = self
+	already_hit = false
 
 func _physics_process(delta: float) -> void:
+	already_hit = false
 	match current_state:
 		STATE.DEAD:
 			# if dead, do nothing
@@ -99,15 +104,18 @@ func _physics_process(delta: float) -> void:
 
 #region signal functions
 func _on_damage_area_area_entered(area: Area2D) -> void:
-	hp -= 1
-	if hp <= 0:
-		current_state = STATE.DEAD
-	else:
-		# when hit, start the immunity time
-		current_state = STATE.HIT
-		hit_timer.start()
-		
-	damage_hitbox.set_deferred(&"disabled", true)
+	if not already_hit:
+		hp -= 1
+		Globals.duck_hit.emit()
+		already_hit = true
+		if hp <= 0:
+			current_state = STATE.DEAD
+		else:
+			# when hit, start the immunity time
+			current_state = STATE.HIT
+			hit_timer.start()
+			
+		damage_hitbox.set_deferred(&"disabled", true)
 
 		
 		
