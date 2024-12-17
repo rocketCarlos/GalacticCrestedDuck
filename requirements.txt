@@ -1,39 +1,39 @@
 MUST HAVE
-[x] duck can move
-[x] duck can shoot
-[x] duck can get damage
-[x] duck can die
-[x] enemies can spawn
-[x] enemies can get damage
-[x] enemies move towards the player
-[x] enemies can die
-[x] circular space where the duck can move around, but not leave. Enemies spawn outside
-[x] replay button/system
-[x] score system (time alive)
-[x] input information ("tutorial")
-[x] sfx:
-	[x] laser
-	[x] duck hit
-	[x] enemy hit
-[x] music:
-	[x] background music
+	[x] duck can move
+	[x] duck can shoot
+	[x] duck can get damage
+	[x] duck can die
+	[x] enemies can spawn
+	[x] enemies can get damage
+	[x] enemies move towards the player
+	[x] enemies can die
+	[x] circular space where the duck can move around, but not leave. Enemies spawn outside
+	[x] replay button/system
+	[x] score system (time alive)
+	[x] input information ("tutorial")
+	[x] sfx:
+		[x] laser
+		[x] duck hit
+		[x] enemy hit
+	[x] music:
+		[x] background music
 
 NICE TO HAVE
-[] duck animations:
-	[] hit
-[] game feel:
-	[] screen shakes
-	[] particles for laser hits
-	[] despawning animaions
+	[] duck animations:
+		[x] hit
+	[] game feel:
+		[] screen shakes
+		[] particles for laser hits
+		[] despawning animaions
+	[] power ups:
+			[] strawberry milk (more hp)
+			[] green tea (better fire rate)
+		[] more enemies:
+			[] ?
 
-	
 OPTIONAL
-[] power ups:
-	[] strawberry milk (more hp)
-	[] green tea (better fire rate)
-[] more enemies:
-	[] ?
-[] different enemies give different score
-[] ending "rounds" give extra score
-[] high score register
-[] upgrade background
+	
+	[] different enemies give different score
+	[] ending "rounds" give extra score
+	[] high score register
+	[] upgrade background

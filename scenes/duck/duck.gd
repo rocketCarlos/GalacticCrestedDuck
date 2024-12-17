@@ -13,6 +13,7 @@ ACCEL_PER_SECOND and DEACCEL_PER_SECOND. User can hold left click to shoot, bein
 @onready var sprite = $Sprite2D
 @onready var gun_position = $GunPosition
 @onready var hit_timer = $HitTimer
+@onready var damage_animation_timer = $HitTimer/DamageAnimationTimer
 @onready var damage_hitbox = $DamageArea/DamageHitbox
 @onready var laser_sound = $LaserSound
 @onready var hit_sound = $Hit
@@ -30,8 +31,8 @@ enum STATE {
 var current_state
 
 const MAX_SPEED = 300.0
-const ACCEL_PER_SECOND = 600.0
-const DEACCEL_PER_SECOND = 300.00
+const ACCEL_PER_SECOND = 650.0
+const DEACCEL_PER_SECOND = 250.00
 
 const LASER_THRESHOLD = 225.0
 
@@ -52,6 +53,7 @@ func _restart() -> void:
 	already_hit = false
 	current_state = STATE.DEFAULT
 	hp = 15
+	damage_hitbox.set_deferred(&"disabled", false)
 
 func _ready() -> void:
 	current_state = STATE.DEAD
@@ -122,9 +124,10 @@ func _on_damage_area_area_entered(area: Area2D) -> void:
 			current_state = STATE.DEAD
 			Globals.game_over.emit()
 		else:
-			# when hit, start the immunity time
+			# when hit, start the immunity time and animation time
 			current_state = STATE.HIT
 			hit_timer.start()
+			damage_animation_timer.start()
 			
 		damage_hitbox.set_deferred(&"disabled", true)
 		
@@ -136,4 +139,15 @@ func _on_hit_timer_timeout() -> void:
 	# when the hit timer ends, go back to default mode and collisions are registered again
 	damage_hitbox.set_deferred(&"disabled", false)
 	current_state = STATE.DEFAULT
+
+
+func _on_damage_animation_timer_timeout() -> void:
+	# if state is hit, alternate visibility for blink effect
+	if current_state == STATE.HIT:
+		visible = not visible
+		damage_animation_timer.start()
+	#else, keep the duck visible
+	else:
+		visible = true
+
 #endregion

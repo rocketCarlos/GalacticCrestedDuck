@@ -36,6 +36,10 @@ position = Vector2(-17, 28)
 [node name="HitTimer" type="Timer" parent="."]
 one_shot = true
 
+[node name="DamageAnimationTimer" type="Timer" parent="HitTimer"]
+wait_time = 0.1
+one_shot = true
+
 [node name="LaserSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_jsv67")
 volume_db = -10.0
@@ -46,3 +50,4 @@ stream = ExtResource("5_aso5f")
 
 [connection signal="area_entered" from="DamageArea" to="." method="_on_damage_area_area_entered"]
 [connection signal="timeout" from="HitTimer" to="." method="_on_hit_timer_timeout"]
+[connection signal="timeout" from="HitTimer/DamageAnimationTimer" to="." method="_on_damage_animation_timer_timeout"]
