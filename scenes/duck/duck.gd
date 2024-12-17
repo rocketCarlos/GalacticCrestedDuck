@@ -14,6 +14,8 @@ ACCEL_PER_SECOND and DEACCEL_PER_SECOND. User can hold left click to shoot, bein
 @onready var gun_position = $GunPosition
 @onready var hit_timer = $HitTimer
 @onready var damage_hitbox = $DamageArea/DamageHitbox
+@onready var laser_sound = $LaserSound
+@onready var hit_sound = $Hit
 #endregion
 
 enum STATE {
@@ -90,6 +92,7 @@ func _physics_process(delta: float) -> void:
 				
 				laser.global_position = gun_position.global_position
 				add_sibling(laser)
+				laser_sound.play()
 			# -----------------------------------------
 			# manage movement
 			# -----------------------------------------
@@ -124,6 +127,8 @@ func _on_damage_area_area_entered(area: Area2D) -> void:
 			hit_timer.start()
 			
 		damage_hitbox.set_deferred(&"disabled", true)
+		
+		hit_sound.play()
 
 		
 		

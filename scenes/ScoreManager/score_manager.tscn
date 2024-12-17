@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://cipf5vwhssaye"]
+[gd_scene load_steps=4 format=3 uid="uid://cipf5vwhssaye"]
 
 [ext_resource type="FontFile" uid="uid://cc7l58qxrrgtu" path="res://assets/WenderFont1.ttf" id="1_vf6jx"]
 [ext_resource type="Script" path="res://scenes/ScoreManager/score_manager.gd" id="2_mcnfa"]
+[ext_resource type="AudioStream" uid="uid://c66re4xtmsnno" path="res://assets/sound/sfx/eye_death.mp3" id="3_xameg"]
 
 [node name="ScoreManager" type="Label"]
 texture_filter = 3
@@ -39,5 +40,8 @@ theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("1_vf6jx")
 
 [node name="ScoreTimer" type="Timer" parent="."]
+
+[node name="MobDeath" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_xameg")
 
 [connection signal="timeout" from="ScoreTimer" to="." method="_on_score_timer_timeout"]

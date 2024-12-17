@@ -8,6 +8,7 @@ Node that computes and displays the score
 
 @onready var score_label = $Score
 @onready var score_timer = $ScoreTimer
+@onready var mob_death_sound = $MobDeath
 
 const POINTS_PER_SECOND = 1
 const POINTS_PER_ELIM = 1
@@ -32,6 +33,7 @@ func _process(delta: float) -> void:
 
 
 func _on_mob_despawned() -> void:
+	mob_death_sound.play()
 	score += POINTS_PER_ELIM
 
 func _on_score_timer_timeout() -> void:

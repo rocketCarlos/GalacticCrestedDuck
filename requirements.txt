@@ -11,12 +11,12 @@ MUST HAVE
 [x] replay button/system
 [x] score system (time alive)
 [x] input information ("tutorial")
-[] sfx:
-	[] laser
-	[] duck hit
-	[] enemy hit
-[] music:
-	[] background music
+[x] sfx:
+	[x] laser
+	[x] duck hit
+	[x] enemy hit
+[x] music:
+	[x] background music
 
 NICE TO HAVE
 [] duck animations:
@@ -36,3 +36,4 @@ OPTIONAL
 [] different enemies give different score
 [] ending "rounds" give extra score
 [] high score register
+[] upgrade background

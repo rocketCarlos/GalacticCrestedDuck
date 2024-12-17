@@ -11,6 +11,7 @@ Always moves towards the player
 @onready var sprite = $AnimatedSprite2D
 @onready var core = $EnemyCore
 @onready var angry_timer = $AngryTimer
+@onready var hit_sound = $Hit
 #endregion
 
 #region attributes
@@ -67,6 +68,8 @@ func _on_area_entered(area: Area2D) -> void:
 	if core.hp <= 0:
 		core.die()
 		queue_free()
+	
+	hit_sound.play()
 
 func _on_angry_timer_timeout() -> void:
 	# eye turns back to normal after the timeout

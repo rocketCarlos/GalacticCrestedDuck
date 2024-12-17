@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://dtfbumnqm18yh"]
+[gd_scene load_steps=14 format=3 uid="uid://dtfbumnqm18yh"]
 
 [ext_resource type="PackedScene" uid="uid://cjs3oukixs1hn" path="res://scenes/scenario/scenario.tscn" id="1_fqy12"]
 [ext_resource type="Script" path="res://scenes/MainScene/main_scene.gd" id="1_inuy1"]
@@ -11,6 +11,8 @@
 [ext_resource type="Texture2D" uid="uid://b5duauq50pqyy" path="res://assets/sprites/play_button2.png" id="8_jvs33"]
 [ext_resource type="Texture2D" uid="uid://bxmkamii4mc7y" path="res://assets/sprites/indications.png" id="10_8xyye"]
 [ext_resource type="FontFile" uid="uid://cc7l58qxrrgtu" path="res://assets/WenderFont1.ttf" id="10_ejqcj"]
+[ext_resource type="AudioStream" uid="uid://d7t04a0ypc5k" path="res://assets/sound/sfx/play.wav" id="12_5emgr"]
+[ext_resource type="AudioStream" uid="uid://dtklwxkfm3odu" path="res://assets/sound/music/01 - Portland Horton - Second Chances.mp3" id="12_dkpj7"]
 
 [node name="MainScene" type="Node"]
 script = ExtResource("1_inuy1")
@@ -74,5 +76,11 @@ text = "Game over! Try again?"
 [node name="Indications" type="Sprite2D" parent="PlayButton"]
 position = Vector2(35, 56)
 texture = ExtResource("10_8xyye")
+
+[node name="PlaySound" type="AudioStreamPlayer" parent="PlayButton"]
+stream = ExtResource("12_5emgr")
+
+[node name="BackgroundMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("12_dkpj7")
 
 [connection signal="pressed" from="PlayButton" to="." method="_on_play_button_pressed"]

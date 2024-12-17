@@ -9,8 +9,12 @@ Controlls the game flow:
 	- Restart: when the player presses the play button, the game (re)starts, meaning that the 
 '''
 
+#region scene nodes
 @onready var play_button = $PlayButton
 @onready var game_over_text = $PlayButton/GameOverText
+@onready var background_music = $BackgroundMusic
+@onready var play_sound = $PlayButton/PlaySound
+#endregion
 
 
 @export var spawn_system_scene: PackedScene
@@ -20,6 +24,7 @@ var spawn_system
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	Globals.game_over.connect(_on_game_over)
+	background_music.play()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -32,6 +37,7 @@ func _on_game_over() -> void:
 	game_over_text.show()
 
 func _on_play_button_pressed() -> void:
+	play_sound.play()
 	# instantiate the spawn system
 	spawn_system = spawn_system_scene.instantiate()
 	add_child(spawn_system)

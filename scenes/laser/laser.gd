@@ -21,7 +21,7 @@ var travelled = 0
 #region ready and process
 func _ready() -> void:
 	rotation = Vector2(0.0, 1.0).angle_to(direction)
-
+	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	# bullet disappears when travelled max_distance units
