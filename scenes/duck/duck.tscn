@@ -1,10 +1,14 @@
-[gd_scene load_steps=6 format=3 uid="uid://dduc3sc1hbdp4"]
+[gd_scene load_steps=8 format=3 uid="uid://dduc3sc1hbdp4"]
 
 [ext_resource type="Script" path="res://scenes/duck/duck.gd" id="1_wetyh"]
 [ext_resource type="PackedScene" uid="uid://cx6aereyhoty4" path="res://scenes/laser/laser.tscn" id="2_ocl7a"]
 [ext_resource type="Texture2D" uid="uid://dm7a0mnolhguf" path="res://assets/sprites/duck_resized.png" id="3_t00l2"]
 [ext_resource type="AudioStream" uid="uid://dgb81n15j7sic" path="res://assets/sound/sfx/laser.wav" id="4_jsv67"]
+[ext_resource type="AudioStream" uid="uid://c8x7gk40w0bim" path="res://assets/sound/sfx/item-pickup.wav" id="4_m34yo"]
 [ext_resource type="AudioStream" uid="uid://ct86qhw1d8qns" path="res://assets/sound/sfx/quack.mp3" id="5_aso5f"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kcn3t"]
+size = Vector2(44, 60)
 
 [node name="Duck" type="CharacterBody2D"]
 texture_filter = 3
@@ -18,6 +22,13 @@ laser_scene = ExtResource("2_ocl7a")
 z_index = 1
 polygon = PackedVector2Array(-16, -3, -3, -24, 5, -24, 18, -3, 5, 25, -3, 25)
 
+[node name="Sprite2D" type="Sprite2D" parent="."]
+rotation = 1.5708
+texture = ExtResource("3_t00l2")
+
+[node name="GunPosition" type="Node2D" parent="."]
+position = Vector2(-17, 28)
+
 [node name="DamageArea" type="Area2D" parent="."]
 collision_layer = 0
 collision_mask = 4
@@ -26,12 +37,18 @@ collision_mask = 4
 z_index = 1
 polygon = PackedVector2Array(-16, -3, -3, -24, 5, -24, 18, -3, 5, 25, -3, 25)
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-rotation = 1.5708
-texture = ExtResource("3_t00l2")
+[node name="ItemPickUp" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 8
 
-[node name="GunPosition" type="Node2D" parent="."]
-position = Vector2(-17, 28)
+[node name="ItemArea" type="CollisionShape2D" parent="ItemPickUp"]
+shape = SubResource("RectangleShape2D_kcn3t")
+
+[node name="IncreasedFireRate" type="Timer" parent="ItemPickUp"]
+
+[node name="ItemSound" type="AudioStreamPlayer" parent="ItemPickUp"]
+stream = ExtResource("4_m34yo")
+volume_db = -4.0
 
 [node name="HitTimer" type="Timer" parent="."]
 one_shot = true
@@ -49,5 +66,6 @@ pitch_scale = 0.75
 stream = ExtResource("5_aso5f")
 
 [connection signal="area_entered" from="DamageArea" to="." method="_on_damage_area_area_entered"]
+[connection signal="timeout" from="ItemPickUp/IncreasedFireRate" to="." method="_on_increased_fire_rate_timeout"]
 [connection signal="timeout" from="HitTimer" to="." method="_on_hit_timer_timeout"]
 [connection signal="timeout" from="HitTimer/DamageAnimationTimer" to="." method="_on_damage_animation_timer_timeout"]

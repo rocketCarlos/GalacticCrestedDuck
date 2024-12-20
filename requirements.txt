@@ -27,9 +27,11 @@ NICE TO HAVE
 		[] despawning animaions
 	[] power ups:
 			[] strawberry milk (more hp)
-			[] green tea (better fire rate)
-		[] more enemies:
-			[] ?
+			[] vanilla chai (better fire rate)
+			[] ? (shield that grants immunity and damages enemies at contact)
+	[] more enemies:
+		[] UFO: goes to a random position outside the ellipse, charges a laser beam and shoots 
+			the player.
 
 OPTIONAL
 	

@@ -1,0 +1,50 @@
+[gd_scene load_steps=6 format=3 uid="uid://ixe60lhijorl"]
+
+[ext_resource type="Texture2D" uid="uid://ds4cmr47731rt" path="res://assets/sprites/green_tea.png" id="1_jvgmr"]
+[ext_resource type="Texture2D" uid="uid://cgup7nfgs18cc" path="res://assets/sprites/strawberry_milk.png" id="2_fn5ds"]
+[ext_resource type="Script" path="res://scenes/Item/item.gd" id="3_w886d"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_do4sb"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_fn5ds")
+}],
+"loop": true,
+"name": &"StrawberryMilk",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_jvgmr")
+}],
+"loop": true,
+"name": &"VanillaChai",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0ca4w"]
+size = Vector2(64, 64)
+
+[node name="Item" type="AnimatedSprite2D"]
+texture_filter = 3
+sprite_frames = SubResource("SpriteFrames_do4sb")
+animation = &"VanillaChai"
+script = ExtResource("3_w886d")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_0ca4w")
+
+[node name="TimeAlive" type="Timer" parent="."]
+
+[node name="TimerFinalAnimation" type="Timer" parent="TimeAlive"]
+wait_time = 0.1
+one_shot = true
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="timeout" from="TimeAlive" to="." method="_on_time_alive_timeout"]
+[connection signal="timeout" from="TimeAlive/TimerFinalAnimation" to="." method="_on_timer_final_animation_timeout"]

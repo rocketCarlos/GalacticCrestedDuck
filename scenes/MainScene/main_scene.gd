@@ -18,8 +18,10 @@ Controlls the game flow:
 
 
 @export var spawn_system_scene: PackedScene
-# reference to the spawn system
+@export var item_system_scene: PackedScene
+# reference to the scenes
 var spawn_system
+var item_system
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -33,6 +35,8 @@ func _process(delta: float) -> void:
 func _on_game_over() -> void:
 	spawn_system.queue_free()
 	spawn_system = null
+	item_system.queue_free()
+	item_system = null
 	play_button.show()
 	game_over_text.show()
 
@@ -41,6 +45,9 @@ func _on_play_button_pressed() -> void:
 	# instantiate the spawn system
 	spawn_system = spawn_system_scene.instantiate()
 	add_child(spawn_system)
+	# instantiate the item system
+	item_system = item_system_scene.instantiate()
+	add_child(item_system)
 	# clear mobs from previous run, if any
 	var mobs = get_tree().get_nodes_in_group("Mobs")
 	for mob in mobs:

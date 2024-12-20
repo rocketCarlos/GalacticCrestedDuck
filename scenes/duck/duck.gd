@@ -6,7 +6,8 @@ Duck
 This is the Galactic Duck that the player plays as. It can shoot with left click and move with right
 click. When holding right click, the duck accelerates towards the mouse position. When right click 
 is released, the duck deaccelerates. Params to define the movement behaviour are MAX_SPEED,  
-ACCEL_PER_SECOND and DEACCEL_PER_SECOND. User can hold left click to shoot, being the fire rate set by fire_rate
+ACCEL_PER_SECOND and DEACCEL_PER_SECOND. User can hold left click to shoot, being the fire rate set 
+by fire_rate * fire_rate_multiplier
 '''
 
 #region scene nodes
@@ -17,12 +18,20 @@ ACCEL_PER_SECOND and DEACCEL_PER_SECOND. User can hold left click to shoot, bein
 @onready var damage_hitbox = $DamageArea/DamageHitbox
 @onready var laser_sound = $LaserSound
 @onready var hit_sound = $Hit
+@onready var fire_rate_timer = $ItemPickUp/IncreasedFireRate
+@onready var item_sound = $ItemPickUp/ItemSound
 #endregion
 
 enum STATE {
 	DEFAULT,
 	HIT,
 	DEAD
+}
+
+enum ITEMS {
+	STRAWBERRY_MILK,
+	GREEN_TEA,
+	
 }
 
 #region attributes
@@ -38,6 +47,7 @@ const LASER_THRESHOLD = 225.0
 
 var last_shot = 0 # time since last fired shot
 var fire_rate = 140 # in milliseconds
+var fire_rate_multiplier = 1.0 # multiplier for item effects
 
 var hp: int
 
@@ -58,6 +68,7 @@ func _restart() -> void:
 func _ready() -> void:
 	current_state = STATE.DEAD
 	Globals.restart.connect(_restart)
+	Globals.item_picked_up.connect(_on_item_picked_up)
 
 func _physics_process(delta: float) -> void:
 	already_hit = false
@@ -78,7 +89,7 @@ func _physics_process(delta: float) -> void:
 			# -----------------------------------------
 			var can_shoot = false
 			var now = Time.get_ticks_msec()
-			if (now - last_shot) >= fire_rate:
+			if (now - last_shot) >= fire_rate * fire_rate_multiplier:
 				can_shoot = true
 			
 			if Input.is_action_pressed("Shoot") and can_shoot:
@@ -150,4 +161,16 @@ func _on_damage_animation_timer_timeout() -> void:
 	else:
 		visible = true
 
+func _on_item_picked_up(type: Globals.ITEMS) -> void:
+	item_sound.play()
+	match type:
+		Globals.ITEMS.VANILLA_CHAI:
+			fire_rate_multiplier = 0.5
+			fire_rate_timer.start(Globals.item_times[type])
+		Globals.ITEMS.STRAWBERRY_MILK:
+			hp += 2
+
+
+func _on_increased_fire_rate_timeout() -> void:
+	fire_rate_multiplier = 1
 #endregion
