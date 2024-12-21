@@ -6,6 +6,8 @@ Autoloaded script for globals
 
 # reference to the duck
 var duck
+#reference to the spawn system
+var spawn_system
 # the center of the screen
 const CENTER_POINT = Vector2(573.0, 326.0) 
 

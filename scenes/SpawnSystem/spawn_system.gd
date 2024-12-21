@@ -22,9 +22,11 @@ Mobs are spawned along a Path2D that covers the game's screen
 
 '''
 @onready var path = $Path2D/PathFollow2D
+@onready var ufo_path = $UfoPath/PathFollow2D
 
 #region enemies
 @export var eye_scene: PackedScene
+@export var ufo_scene: PackedScene
 #endregion
 
 
@@ -38,11 +40,18 @@ var eyes = [
 	{"ACTION": "wait", "TIME": 1},
 	{"ACTION": "spawn", "INTERVAL": 0.75, "GROUP": 1, "TIMES": 25},
 ]
+
+
+var ufos = [
+	{"ACTION": "wait", "TIME": 2},
+	{"ACTION": "spawn", "INTERVAL": 10, "GROUP": 1, "TIMES": 5}
+]
 #endregion
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	manage_spawns(eyes, eye_scene)
+	manage_spawns(ufos, ufo_scene)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -86,3 +95,7 @@ func spawn(mob: PackedScene) -> void:
 
 	# Spawn the mob by adding it to the scene.
 	add_sibling(instance)
+
+func get_ufo_position_target() -> Vector2:
+	ufo_path.progress_ratio = randf()
+	return ufo_path.position

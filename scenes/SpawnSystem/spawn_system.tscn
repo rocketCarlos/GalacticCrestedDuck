@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://cjm3pe5p8b151"]
+[gd_scene load_steps=6 format=3 uid="uid://cjm3pe5p8b151"]
 
 [ext_resource type="Script" path="res://scenes/SpawnSystem/spawn_system.gd" id="1_7r2ib"]
 [ext_resource type="PackedScene" uid="uid://ull5mrnilukr" path="res://scenes/Eye/eye.tscn" id="2_nr5i7"]
+[ext_resource type="PackedScene" uid="uid://bnqvgubglfq28" path="res://scenes/Ufo/ufo.tscn" id="3_m0uja"]
 
 [sub_resource type="Curve2D" id="Curve2D_nvxhu"]
 _data = {
@@ -9,9 +10,16 @@ _data = {
 }
 point_count = 5
 
+[sub_resource type="Curve2D" id="Curve2D_cbbt0"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 59, 53, 0, 0, 0, 0, 1101, 53, 0, 0, 0, 0, 1099, 604, 0, 0, 0, 0, 61, 600, 0, 0, 0, 0, 59, 53)
+}
+point_count = 5
+
 [node name="SpawnSystem" type="Node"]
 script = ExtResource("1_7r2ib")
 eye_scene = ExtResource("2_nr5i7")
+ufo_scene = ExtResource("3_m0uja")
 
 [node name="Path2D" type="Path2D" parent="."]
 curve = SubResource("Curve2D_nvxhu")
@@ -19,3 +27,9 @@ curve = SubResource("Curve2D_nvxhu")
 [node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
 position = Vector2(1153, 0)
 rotation = 1.5708
+
+[node name="UfoPath" type="Path2D" parent="."]
+curve = SubResource("Curve2D_cbbt0")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="UfoPath"]
+position = Vector2(59, 53)

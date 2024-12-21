@@ -35,6 +35,8 @@ enum BEHAVIOUR {
 	SHOOTING
 }
 
+var wandering_target
+
 var current_behaviour: BEHAVIOUR:
 	set(value):
 		current_behaviour = value
@@ -68,9 +70,11 @@ var current_behaviour: BEHAVIOUR:
 #region ready and process
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	core.hp = 200
+	core.hp = 2
 	core.type = Globals.MOB_TYPE.UFO
-	behaviour_timer.start(5)
+	
+	set_target()
+	
 	current_behaviour = BEHAVIOUR.WANDERING
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -91,7 +95,7 @@ func _process(delta: float) -> void:
 			# shoot laser
 			add_sibling(laser)
 			current_behaviour = BEHAVIOUR.WANDERING
-			behaviour_timer.start(5)
+			set_target()
 #endregion
 
 #region utility functions
@@ -103,8 +107,14 @@ func manage_laser_animations() -> void:
 	opacity_tween.tween_property(laser_beam, "modulate", Color(1, 1, 1, 0.75), 
 	LOADING_TIME-1.6).set_trans(Tween.TRANS_BOUNCE)
 	
+# function that gets a new target for the ufo and makes it travel there
+func set_target() -> void:
+	wandering_target = Globals.spawn_system.get_ufo_position_target()
 	
+	var position_tweener = get_tree().create_tween()
+	position_tweener.tween_property(self, "position", wandering_target, 5).set_trans(Tween.TRANS_SINE)
 	
+	behaviour_timer.start(5)
 #endregion
 
 #region signal functions
@@ -126,6 +136,7 @@ func _on_damage_timer_timeout() -> void:
 
 
 func _on_behaviour_timer_timeout() -> void:
+	
 	current_behaviour = BEHAVIOUR.AIMING
 	
 func _on_loading_laser_timeout() -> void:

@@ -36,6 +36,7 @@ func _process(delta: float) -> void:
 func _on_game_over() -> void:
 	spawn_system.queue_free()
 	spawn_system = null
+	Globals.spawn_system = null
 	item_system.queue_free()
 	item_system = null
 	
@@ -48,6 +49,7 @@ func _on_game_over() -> void:
 func _on_play_button_pressed() -> void:
 	# instantiate the spawn system
 	spawn_system = spawn_system_scene.instantiate()
+	Globals.spawn_system = spawn_system
 	add_child(spawn_system)
 	# instantiate the item system
 	item_system = item_system_scene.instantiate()
