@@ -14,6 +14,7 @@ Controlls the game flow:
 @onready var game_over_text = $PlayButton/GameOverText
 @onready var background_music = $BackgroundMusic
 @onready var play_sound = $PlayButton/PlaySound
+@onready var game_over_sfx = $GameOver
 #endregion
 
 
@@ -26,7 +27,6 @@ var item_system
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	Globals.game_over.connect(_on_game_over)
-	background_music.play()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -37,11 +37,14 @@ func _on_game_over() -> void:
 	spawn_system = null
 	item_system.queue_free()
 	item_system = null
+	
 	play_button.show()
 	game_over_text.show()
+	
+	background_music.stop()
+	game_over_sfx.play()
 
 func _on_play_button_pressed() -> void:
-	play_sound.play()
 	# instantiate the spawn system
 	spawn_system = spawn_system_scene.instantiate()
 	add_child(spawn_system)
@@ -56,3 +59,6 @@ func _on_play_button_pressed() -> void:
 	Globals.restart.emit()
 	# hide the play button
 	play_button.hide()
+	play_sound.play()
+	await play_sound.finished
+	background_music.play()

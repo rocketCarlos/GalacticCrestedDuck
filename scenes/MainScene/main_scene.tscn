@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://dtfbumnqm18yh"]
+[gd_scene load_steps=16 format=3 uid="uid://dtfbumnqm18yh"]
 
 [ext_resource type="PackedScene" uid="uid://cjs3oukixs1hn" path="res://scenes/scenario/scenario.tscn" id="1_fqy12"]
 [ext_resource type="Script" path="res://scenes/MainScene/main_scene.gd" id="1_inuy1"]
@@ -14,6 +14,7 @@
 [ext_resource type="FontFile" uid="uid://cc7l58qxrrgtu" path="res://assets/WenderFont1.ttf" id="10_ejqcj"]
 [ext_resource type="AudioStream" uid="uid://d7t04a0ypc5k" path="res://assets/sound/sfx/play.wav" id="12_5emgr"]
 [ext_resource type="AudioStream" uid="uid://dtklwxkfm3odu" path="res://assets/sound/music/01 - Portland Horton - Second Chances.mp3" id="12_dkpj7"]
+[ext_resource type="AudioStream" uid="uid://b5w58ocegba0e" path="res://assets/sound/sfx/game_over.wav" id="15_tv3ms"]
 
 [node name="MainScene" type="Node"]
 script = ExtResource("1_inuy1")
@@ -84,5 +85,8 @@ stream = ExtResource("12_5emgr")
 
 [node name="BackgroundMusic" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("12_dkpj7")
+
+[node name="GameOver" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("15_tv3ms")
 
 [connection signal="pressed" from="PlayButton" to="." method="_on_play_button_pressed"]
