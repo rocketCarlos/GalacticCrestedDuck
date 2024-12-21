@@ -44,6 +44,7 @@ var random_threshold = 75.0
 func _ready() -> void:
 	behaviour = 0
 	core.hp = 4
+	core.type = Globals.MOB_TYPE.EYE
 	goal_randomness = Vector2(randf_range(-random_range, random_range), randf_range(-random_range, random_range))
 
 func _process(delta: float) -> void:

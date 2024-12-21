@@ -1,0 +1,203 @@
+[gd_scene load_steps=27 format=3 uid="uid://bnqvgubglfq28"]
+
+[ext_resource type="Script" path="res://scenes/Ufo/ufo.gd" id="1_u3fi6"]
+[ext_resource type="Texture2D" uid="uid://bbbdc6dgw8ej4" path="res://assets/sprites/ufo-Sheet.png" id="2_hr3dd"]
+[ext_resource type="PackedScene" uid="uid://cx6aereyhoty4" path="res://scenes/laser/laser.tscn" id="2_smlnd"]
+[ext_resource type="Texture2D" uid="uid://dfq76xn07i1w7" path="res://assets/sprites/ufo-loading-Sheet.png" id="3_orw1i"]
+[ext_resource type="Texture2D" uid="uid://ocen7dvj5bc" path="res://assets/sprites/ufo_laser.png" id="4_8fy4p"]
+[ext_resource type="PackedScene" uid="uid://cfff6oyvj81gi" path="res://scenes/EnemyCore/enemy_core.tscn" id="5_qxyfn"]
+[ext_resource type="AudioStream" uid="uid://bxdnwx7rdxwj2" path="res://assets/sound/sfx/ufo_hit.mp3" id="6_0rptg"]
+[ext_resource type="AudioStream" uid="uid://djsx0dop5fqb3" path="res://assets/sound/sfx/ufo_laser.mp3" id="7_p5gty"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_jehxx"]
+radius = 15.5564
+height = 87.6812
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tgbbs"]
+atlas = ExtResource("2_hr3dd")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yjxj2"]
+atlas = ExtResource("2_hr3dd")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xsxey"]
+atlas = ExtResource("2_hr3dd")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_036px"]
+atlas = ExtResource("2_hr3dd")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kqshh"]
+atlas = ExtResource("3_orw1i")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rffg3"]
+atlas = ExtResource("3_orw1i")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jsxlr"]
+atlas = ExtResource("3_orw1i")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7mfe4"]
+atlas = ExtResource("3_orw1i")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5nclm"]
+atlas = ExtResource("3_orw1i")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f3nmf"]
+atlas = ExtResource("3_orw1i")
+region = Rect2(320, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ilmkr"]
+atlas = ExtResource("3_orw1i")
+region = Rect2(384, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qjrn2"]
+atlas = ExtResource("3_orw1i")
+region = Rect2(448, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n0j2o"]
+atlas = ExtResource("3_orw1i")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6xi7n"]
+atlas = ExtResource("3_orw1i")
+region = Rect2(320, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oikhm"]
+atlas = ExtResource("3_orw1i")
+region = Rect2(384, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o665a"]
+atlas = ExtResource("3_orw1i")
+region = Rect2(448, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_plns6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tgbbs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yjxj2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xsxey")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_036px")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kqshh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rffg3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jsxlr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7mfe4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5nclm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f3nmf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ilmkr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qjrn2")
+}],
+"loop": true,
+"name": &"loading1",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n0j2o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6xi7n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oikhm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o665a")
+}],
+"loop": true,
+"name": &"loading2",
+"speed": 5.0
+}]
+
+[node name="Ufo" type="Area2D"]
+texture_filter = 3
+collision_layer = 4
+collision_mask = 2
+script = ExtResource("1_u3fi6")
+laser_scene = ExtResource("2_smlnd")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1, 1)
+rotation = -0.785398
+scale = Vector2(1, 1)
+shape = SubResource("CapsuleShape2D_jehxx")
+debug_color = Color(0.789321, 0.104238, 0.995218, 0.42)
+
+[node name="LaserPosition" type="Node2D" parent="."]
+position = Vector2(-12, 12)
+
+[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_plns6")
+animation = &"loading1"
+
+[node name="LaserBeam" type="Sprite2D" parent="Sprite2D"]
+visible = false
+z_index = -1
+rotation = 2.35619
+texture = ExtResource("4_8fy4p")
+centered = false
+offset = Vector2(0, -3)
+
+[node name="EnemyCore" parent="." instance=ExtResource("5_qxyfn")]
+
+[node name="BehaviourTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="LoadingLaser" type="Timer" parent="BehaviourTimer"]
+wait_time = 5.0
+one_shot = true
+
+[node name="Locking" type="Timer" parent="BehaviourTimer"]
+wait_time = 0.37
+one_shot = true
+
+[node name="DamageTimer" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true
+
+[node name="Hit" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_0rptg")
+
+[node name="LaserSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_p5gty")
+volume_db = -16.0
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="timeout" from="BehaviourTimer" to="." method="_on_behaviour_timer_timeout"]
+[connection signal="timeout" from="BehaviourTimer/LoadingLaser" to="." method="_on_loading_laser_timeout"]
+[connection signal="timeout" from="BehaviourTimer/Locking" to="." method="_on_locking_timeout"]
+[connection signal="timeout" from="DamageTimer" to="." method="_on_damage_timer_timeout"]

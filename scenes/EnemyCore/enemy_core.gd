@@ -14,6 +14,7 @@ Enemies are meant to have this node as a child and use its functions to perform 
 
 #region attributes
 var hp: int
+var type: Globals.MOB_TYPE
 #endregion
 
 #region ready and process
@@ -38,6 +39,6 @@ func hit() -> void:
 Called when the enemy dies to free the node and compute score
 '''
 func die() -> void:
-	Globals.mob_despawned.emit()
+	Globals.mob_despawned.emit(type)
 	
 #endregion

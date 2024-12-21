@@ -6,13 +6,15 @@ Autoloaded script for globals
 
 # reference to the duck
 var duck
+# the center of the screen
+const CENTER_POINT = Vector2(573.0, 326.0) 
 
 # signal emitted by the main scene node to restart the game
 signal restart
 # emitted by the duck when the game ends
 signal game_over
 # when a mob despawns, it sends this signal to add score
-signal mob_despawned
+signal mob_despawned(type: MOB_TYPE)
 # when the duck is hit, it sends this signal to update the health display
 signal duck_hit
 # when an item is picked up, the duck applies effect, the item disappears and info of the active
@@ -22,6 +24,11 @@ signal item_picked_up(type: ITEMS)
 enum ITEMS {
 	VANILLA_CHAI, # increases fire rate
 	STRAWBERRY_MILK # gives hp
+}
+
+enum MOB_TYPE {
+	EYE,
+	UFO
 }
 
 # amount of time that an effect is active
@@ -36,8 +43,8 @@ func get_random_point_in_ellipse() -> Vector2:
 	
 	var x = lerp(0.0, point.x, randf())
 	var y = lerp(0.0, point.y, randf())
-	# magic numbers are half the viewport size. Add them to offset the points towards the center
-	return Vector2(x, y) + Vector2(573.0, 326.0) 
+	# Add CENTER POINT to offset the points towards the center
+	return Vector2(x, y) + CENTER_POINT
 	
 # gets a point that is in the outline of the ellipse that apporoximates the playable area
 func get_outline_point_in_ellipse() -> Vector2:

@@ -8,7 +8,8 @@ Node that computes and displays the score
 
 @onready var score_label = $Score
 @onready var score_timer = $ScoreTimer
-@onready var mob_death_sound = $MobDeath
+@onready var eye_death_sound = $EyeDead
+@onready var ufo_death_sound = $UfoDead
 
 const POINTS_PER_SECOND = 1
 const POINTS_PER_ELIM = 1
@@ -32,8 +33,13 @@ func _process(delta: float) -> void:
 	pass
 
 
-func _on_mob_despawned() -> void:
-	mob_death_sound.play()
+func _on_mob_despawned(type: Globals.MOB_TYPE) -> void:
+	match type:
+		Globals.MOB_TYPE.EYE:
+			eye_death_sound.play()
+		Globals.MOB_TYPE.UFO:
+			ufo_death_sound.play()
+	
 	score += POINTS_PER_ELIM
 
 func _on_score_timer_timeout() -> void:
