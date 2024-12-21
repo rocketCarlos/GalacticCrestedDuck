@@ -36,16 +36,20 @@ func get_random_point_in_ellipse() -> Vector2:
 	
 	var x = lerp(0.0, point.x, randf())
 	var y = lerp(0.0, point.y, randf())
-	return Vector2(x, y) + (get_tree().root.size / 2.0)
+	# magic numbers are half the viewport size. Add them to offset the points towards the center
+	return Vector2(x, y) + Vector2(573.0, 326.0) 
 	
 # gets a point that is in the outline of the ellipse that apporoximates the playable area
 func get_outline_point_in_ellipse() -> Vector2:
-	var ellipse_width = 964.0 / 2.0
+	# magic numbers are the semiaxis of the pseudoellipse collider
+	var ellipse_width = 964.0 / 2.0 
 	var ellipse_height = 539.0 / 2.0
 	
-	# get a random point in x
-	var x = randf_range(-ellipse_width, ellipse_width)
-	var y = sqrt((1.0 - (x*x)/(ellipse_width*ellipse_width)) * (ellipse_height*ellipse_height))
+	# get a random point in x axis
+	var x = randf_range(-ellipse_width+1.0, ellipse_width-1.0) # add 1 to avoid value 0 for the y
+	# get one of the possible y values (the positive one) using the ellpise formula
+	var y = (ellipse_height/ellipse_width)*sqrt(ellipse_width*ellipse_width - x*x)
+	# now, randomly select the other possible y value
 	if randf() > 0.5:
 		y = - y
 	

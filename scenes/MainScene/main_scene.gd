@@ -3,9 +3,9 @@ extends Node
 '''
 Main scene
 
-Controlls the game flow: 
+Controls the game flow: 
 	- Game over: when the player loses all hp, the duck freezes (its state is DEAD), the spawn
-	system is freed (therefore, no more mobs spawn) and a text is shown along the play button
+	system is freed for mobs and items and a text is shown along the play button
 	- Restart: when the player presses the play button, the game (re)starts, meaning that the 
 '''
 
@@ -17,7 +17,7 @@ Controlls the game flow:
 @onready var game_over_sfx = $GameOver
 #endregion
 
-
+# packed scenes scenes
 @export var spawn_system_scene: PackedScene
 @export var item_system_scene: PackedScene
 # reference to the scenes
@@ -32,6 +32,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	pass
 
+#region signal functions
 func _on_game_over() -> void:
 	spawn_system.queue_free()
 	spawn_system = null
@@ -62,3 +63,4 @@ func _on_play_button_pressed() -> void:
 	play_sound.play()
 	await play_sound.finished
 	background_music.play()
+#endregion
