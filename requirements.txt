@@ -36,7 +36,7 @@ NICE TO HAVE
 
 OPTIONAL
 	[] ufo zig-zags on its way to target position
-	[] ufo points towards the movement direction
+	[x] ufo points towards the movement direction
 	[] high score register
 	[x] upgrade background
 	[] better item times information
