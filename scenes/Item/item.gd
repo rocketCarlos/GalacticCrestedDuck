@@ -3,7 +3,8 @@ extends AnimatedSprite2D
 '''
 Item
 
-Node that represents an item
+Node that represents an item. Item types are declared in Globals. Item effects are managed by the 
+duck
 '''
 
 @onready var time_alive = $TimeAlive
@@ -20,6 +21,8 @@ var type : Globals.ITEMS:
 				animation = "StrawberryMilk"
 			Globals.ITEMS.VANILLA_CHAI:
 				animation = "VanillaChai"
+			Globals.ITEMS.PHO:
+				animation = "Pho"
 			_:
 				printerr("INVALID ITEM TYPE ", value, " ", self)
 

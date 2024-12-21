@@ -17,7 +17,7 @@ Always moves towards the player
 
 #region attributes
 var default_speed = 75
-var angry_speed = 175
+var angry_speed = 145
 var current_speed: float
 # 0 is default, 1 is angry
 var behaviour: int: 
@@ -43,7 +43,7 @@ var random_threshold = 75.0
 #region ready and process
 func _ready() -> void:
 	behaviour = 0
-	core.hp = 4
+	core.hp = 3
 	core.type = Globals.MOB_TYPE.EYE
 	goal_randomness = Vector2(randf_range(-random_range, random_range), randf_range(-random_range, random_range))
 

@@ -64,6 +64,7 @@ var current_behaviour: BEHAVIOUR:
 				laser.global_position = laser_position.global_position
 				laser.collision_layer = 4
 				laser.collision_mask = 1
+				laser.speed = laser.speed * 1.5
 				
 				locking_timer.start()
 

@@ -1,11 +1,20 @@
-[gd_scene load_steps=6 format=3 uid="uid://ixe60lhijorl"]
+[gd_scene load_steps=7 format=3 uid="uid://ixe60lhijorl"]
 
+[ext_resource type="Texture2D" uid="uid://orysetas8ju0" path="res://assets/sprites/pho.png" id="1_b7a6n"]
 [ext_resource type="Texture2D" uid="uid://ds4cmr47731rt" path="res://assets/sprites/green_tea.png" id="1_jvgmr"]
 [ext_resource type="Texture2D" uid="uid://cgup7nfgs18cc" path="res://assets/sprites/strawberry_milk.png" id="2_fn5ds"]
 [ext_resource type="Script" path="res://scenes/Item/item.gd" id="3_w886d"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_do4sb"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_b7a6n")
+}],
+"loop": true,
+"name": &"Pho",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("2_fn5ds")
@@ -29,7 +38,7 @@ size = Vector2(64, 64)
 [node name="Item" type="AnimatedSprite2D"]
 texture_filter = 3
 sprite_frames = SubResource("SpriteFrames_do4sb")
-animation = &"VanillaChai"
+animation = &"Pho"
 script = ExtResource("3_w886d")
 
 [node name="Area2D" type="Area2D" parent="."]

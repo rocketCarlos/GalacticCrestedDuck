@@ -20,6 +20,9 @@ by fire_rate * fire_rate_multiplier
 @onready var hit_sound = $Hit
 @onready var fire_rate_timer = $ItemPickUp/IncreasedFireRate
 @onready var item_sound = $ItemPickUp/ItemSound
+@onready var shield = $Shield
+@onready var shield_time = $Shield/ShieldTime
+@onready var shield_damage = $Shield/ShieldArea/ShieldDamage
 #endregion
 
 enum STATE {
@@ -28,11 +31,6 @@ enum STATE {
 	DEAD
 }
 
-enum ITEMS {
-	STRAWBERRY_MILK,
-	GREEN_TEA,
-	
-}
 
 #region attributes
 @export var laser_scene: PackedScene
@@ -53,6 +51,8 @@ var hp: int
 
 # ensures that the duck is hit only once per frame
 var already_hit: bool
+
+var shield_on = false
 #endregion
 
 #region restart, ready and process
@@ -62,7 +62,7 @@ func _restart() -> void:
 	Globals.duck = self
 	already_hit = false
 	current_state = STATE.DEFAULT
-	hp = 15
+	hp = 5
 	damage_hitbox.set_deferred(&"disabled", false)
 
 func _ready() -> void:
@@ -106,6 +106,7 @@ func _physics_process(delta: float) -> void:
 				laser.global_position = gun_position.global_position
 				add_sibling(laser)
 				laser_sound.play()
+				gun_position.emitting = true
 			# -----------------------------------------
 			# manage movement
 			# -----------------------------------------
@@ -127,22 +128,24 @@ func _physics_process(delta: float) -> void:
 
 #region signal functions
 func _on_damage_area_area_entered(area: Area2D) -> void:
-	if not already_hit:
-		hp -= 1
-		Globals.duck_hit.emit()
-		already_hit = true
-		if hp <= 0:
-			current_state = STATE.DEAD
-			Globals.game_over.emit()
-		else:
-			# when hit, start the immunity time and animation time
-			current_state = STATE.HIT
-			hit_timer.start()
-			damage_animation_timer.start()
+	# if shield on, duck recieves no damage
+	if not shield_on:
+		if not already_hit:
+			hp -= 1
+			Globals.duck_hit.emit()
+			already_hit = true
+			if hp <= 0:
+				current_state = STATE.DEAD
+				Globals.game_over.emit()
+			else:
+				# when hit, start the immunity time and animation time
+				current_state = STATE.HIT
+				hit_timer.start()
+				damage_animation_timer.start()
+				
+			damage_hitbox.set_deferred(&"disabled", true)
 			
-		damage_hitbox.set_deferred(&"disabled", true)
-		
-		hit_sound.play()
+			hit_sound.play()
 
 		
 		
@@ -165,11 +168,23 @@ func _on_item_picked_up(type: Globals.ITEMS) -> void:
 	item_sound.play()
 	match type:
 		Globals.ITEMS.VANILLA_CHAI:
-			fire_rate_multiplier = 0.5
+			fire_rate_multiplier = 0.75
 			fire_rate_timer.start(Globals.item_times[type])
 		Globals.ITEMS.STRAWBERRY_MILK:
-			hp += 2
-
+			hp += 1
+		Globals.ITEMS.PHO:
+			activate_shield()
+			shield_time.start(Globals.item_times[type])
+			
+func activate_shield() -> void:
+	shield.show()
+	shield_on = true
+	shield_damage.set_deferred("disabled", false)
+	
+func _on_shield_time_timeout() -> void:
+	shield.hide()
+	shield_on = false
+	shield_damage.set_deferred("disabled", true)
 
 func _on_increased_fire_rate_timeout() -> void:
 	fire_rate_multiplier = 1

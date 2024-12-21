@@ -13,9 +13,12 @@ area
 @onready var spawn_timer = $SpawnTimer
 @onready var tea_effect_timer = $VanillaChai/EffectTimer
 @onready var vanilla_chai = $VanillaChai
+@onready var pho_effect_timer = $Pho/EffectTimer
+@onready var pho = $Pho
 #endregion
 
 var tea_picked = false
+var pho_picked = false
 
 @export var item_scene : PackedScene
 
@@ -42,11 +45,11 @@ func _on_spawn_timer_timeout() -> void:
 	# choose a random position
 	item.global_position = Globals.get_random_point_in_ellipse()
 	add_child(item)
-	# next item spawns between 9 and 15 seconds 
-	spawn_timer.start(9 + randf() * 6)
+	# next item spawn
+	spawn_timer.start(15 + randf() * 6)
 
 
-func _on_effect_timer_timeout() -> void:
+func _on_tea_timer_timeout() -> void:
 	tea_picked = false
 	# when the effect is gonna end, blink the item for 2 seconds
 	for i in range(20):
@@ -58,11 +61,27 @@ func _on_effect_timer_timeout() -> void:
 		
 	vanilla_chai.hide()
 	
+func _on_pho_timer_timeout() -> void:
+	pho_picked = false
+	# when the effect is gonna end, blink the item for 2 seconds
+	for i in range(20):
+		pho.visible = not pho.visible
+		await get_tree().create_timer(0.1).timeout
+		# in case the player picked up another tea, abort
+		if pho_picked:
+			return
 		
+	pho.hide()
+	
+	
 func _on_item_picked_up(type: Globals.ITEMS) -> void:
 	# show info status
 	if type == Globals.ITEMS.VANILLA_CHAI:
 		tea_picked = true
 		vanilla_chai.show()
 		tea_effect_timer.start(Globals.item_times[Globals.ITEMS.VANILLA_CHAI] - 2)
+	if type == Globals.ITEMS.PHO:
+		pho_picked = true
+		pho.show()
+		pho_effect_timer.start(Globals.item_times[Globals.ITEMS.PHO] - 2)
 #endregion

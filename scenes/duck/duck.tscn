@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://dduc3sc1hbdp4"]
+[gd_scene load_steps=10 format=3 uid="uid://dduc3sc1hbdp4"]
 
 [ext_resource type="Script" path="res://scenes/duck/duck.gd" id="1_wetyh"]
 [ext_resource type="PackedScene" uid="uid://cx6aereyhoty4" path="res://scenes/laser/laser.tscn" id="2_ocl7a"]
@@ -6,9 +6,13 @@
 [ext_resource type="AudioStream" uid="uid://dgb81n15j7sic" path="res://assets/sound/sfx/laser.wav" id="4_jsv67"]
 [ext_resource type="AudioStream" uid="uid://c8x7gk40w0bim" path="res://assets/sound/sfx/item-pickup.wav" id="4_m34yo"]
 [ext_resource type="AudioStream" uid="uid://ct86qhw1d8qns" path="res://assets/sound/sfx/quack.mp3" id="5_aso5f"]
+[ext_resource type="Texture2D" uid="uid://ofghxa3w06ts" path="res://assets/sprites/shield.png" id="7_epp43"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kcn3t"]
 size = Vector2(44, 60)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_jbto8"]
+radius = 34.0147
 
 [node name="Duck" type="CharacterBody2D"]
 texture_filter = 3
@@ -26,8 +30,17 @@ polygon = PackedVector2Array(-16, -3, -3, -24, 5, -24, 18, -3, 5, 25, -3, 25)
 rotation = 1.5708
 texture = ExtResource("3_t00l2")
 
-[node name="GunPosition" type="Node2D" parent="."]
-position = Vector2(-17, 28)
+[node name="GunPosition" type="CPUParticles2D" parent="."]
+position = Vector2(-17, 24.38)
+emitting = false
+lifetime = 0.15
+one_shot = true
+randomness = 0.5
+lifetime_randomness = 0.5
+direction = Vector2(0, 1)
+gravity = Vector2(0, 0)
+initial_velocity_max = 112.63
+color = Color(1, 0, 0, 1)
 
 [node name="DamageArea" type="Area2D" parent="."]
 collision_layer = 0
@@ -65,7 +78,23 @@ pitch_scale = 0.75
 [node name="Hit" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_aso5f")
 
+[node name="Shield" type="Sprite2D" parent="."]
+visible = false
+self_modulate = Color(1, 1, 1, 0.52549)
+texture = ExtResource("7_epp43")
+
+[node name="ShieldTime" type="Timer" parent="Shield"]
+
+[node name="ShieldArea" type="Area2D" parent="Shield"]
+collision_layer = 2
+collision_mask = 0
+
+[node name="ShieldDamage" type="CollisionShape2D" parent="Shield/ShieldArea"]
+shape = SubResource("CircleShape2D_jbto8")
+disabled = true
+
 [connection signal="area_entered" from="DamageArea" to="." method="_on_damage_area_area_entered"]
 [connection signal="timeout" from="ItemPickUp/IncreasedFireRate" to="." method="_on_increased_fire_rate_timeout"]
 [connection signal="timeout" from="HitTimer" to="." method="_on_hit_timer_timeout"]
 [connection signal="timeout" from="HitTimer/DamageAnimationTimer" to="." method="_on_damage_animation_timer_timeout"]
+[connection signal="timeout" from="Shield/ShieldTime" to="." method="_on_shield_time_timeout"]

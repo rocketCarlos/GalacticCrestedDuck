@@ -25,7 +25,8 @@ signal item_picked_up(type: ITEMS)
 
 enum ITEMS {
 	VANILLA_CHAI, # increases fire rate
-	STRAWBERRY_MILK # gives hp
+	STRAWBERRY_MILK, # gives hp
+	PHO, # gives a shield and invulnerability
 }
 
 enum MOB_TYPE {
@@ -35,7 +36,8 @@ enum MOB_TYPE {
 
 # amount of time that an effect is active
 var item_times = {
-	ITEMS.VANILLA_CHAI: 10.0, # seconds of increased fire_rate
+	ITEMS.VANILLA_CHAI: 7.0, # seconds of increased fire_rate
+	ITEMS.PHO: 5.0, # seconds of shield and invulnerability
 }
 
 # function that generates and return a random point contained in the ellipse that approximates the

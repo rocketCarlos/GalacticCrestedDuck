@@ -19,23 +19,22 @@ MUST HAVE
 		[x] background music
 
 NICE TO HAVE
-	[] duck animations:
+	[x] duck animations:
 		[x] hit
+	[] PUT PORTLAND IN MUSIC CREDITS
 	[] game feel:
-		[] screen shakes
+		[x] particles for laser shots
 		[] particles for laser hits
 		[] despawning animaions
-	[] power ups:
-			[] strawberry milk (more hp)
-			[] vanilla chai (better fire rate)
-			[] ? (shield that grants immunity and damages enemies at contact)
-	[] more enemies:
-		[] UFO: goes to a random position outside the ellipse, charges a laser beam and shoots 
+	[x] power ups:
+			[x] strawberry milk (more hp)
+			[x] vanilla chai (better fire rate)
+			[x] Pho (shield that grants immunity and damages enemies at contact)
+	[x] more enemies:
+		[x] UFO: goes to a random position outside the ellipse, charges a laser beam and shoots 
 			the player.
 
 OPTIONAL
-	
-	[] different enemies give different score
-	[] ending "rounds" give extra score
+	[] ufo zig-zags on its way to target position
 	[] high score register
 	[] upgrade background
