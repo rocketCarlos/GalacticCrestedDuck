@@ -109,12 +109,13 @@ func manage_laser_animations() -> void:
 	
 # function that gets a new target for the ufo and makes it travel there
 func set_target() -> void:
-	wandering_target = Globals.spawn_system.get_ufo_position_target()
-	
-	var position_tweener = get_tree().create_tween()
-	position_tweener.tween_property(self, "position", wandering_target, 5).set_trans(Tween.TRANS_SINE)
-	
-	behaviour_timer.start(5)
+	if Globals.spawn_system:
+		wandering_target = Globals.spawn_system.get_ufo_position_target()
+		
+		var position_tweener = get_tree().create_tween()
+		position_tweener.tween_property(self, "position", wandering_target, 5).set_trans(Tween.TRANS_SINE)
+		
+		behaviour_timer.start(5)
 #endregion
 
 #region signal functions

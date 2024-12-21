@@ -32,19 +32,21 @@ Mobs are spawned along a Path2D that covers the game's screen
 
 #region spawning definitions
 var eyes = [
-	{"ACTION": "spawn", "INTERVAL": 3, "GROUP": 1, "TIMES": 5},
+	{"ACTION": "spawn", "INTERVAL": 2, "GROUP": 1, "TIMES": 5},
 	{"ACTION": "wait", "TIME": 5},
-	{"ACTION": "spawn", "INTERVAL": 2, "GROUP": 2, "TIMES": 10},
+	{"ACTION": "spawn", "INTERVAL": 2, "GROUP": 2, "TIMES": 8},
+	{"ACTION": "wait", "TIME": 4},
+	{"ACTION": "spawn", "INTERVAL": 4, "GROUP": 4, "TIMES": 5},
 	{"ACTION": "wait", "TIME": 5},
-	{"ACTION": "spawn", "INTERVAL": 4, "GROUP": 4, "TIMES": 4},
-	{"ACTION": "wait", "TIME": 1},
-	{"ACTION": "spawn", "INTERVAL": 0.75, "GROUP": 1, "TIMES": 25},
+	{"ACTION": "spawn", "INTERVAL": 0.75, "GROUP": 1, "TIMES": 10000},
 ]
 
 
 var ufos = [
-	{"ACTION": "wait", "TIME": 2},
-	{"ACTION": "spawn", "INTERVAL": 10, "GROUP": 1, "TIMES": 5}
+	{"ACTION": "wait", "TIME": 110},
+	{"ACTION": "spawn", "INTERVAL": 10, "GROUP": 1, "TIMES": 5},
+	{"ACTION": "wait", "TIME": 10},
+	{"ACTION": "spawn", "INTERVAL": 10, "GROUP": 2, "TIMES": 5},
 ]
 #endregion
 
