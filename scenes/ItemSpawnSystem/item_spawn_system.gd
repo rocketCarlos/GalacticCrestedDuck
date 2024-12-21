@@ -25,8 +25,8 @@ var active_items = [0, 0]
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	Globals.item_picked_up.connect(_on_item_picked_up)
-	# spawn_timer.start( 7 + randf() * 10)
-	spawn_timer.start(5)
+	# first item spawns at about one minute
+	spawn_timer.start(75)
 	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -34,14 +34,16 @@ func _process(delta: float) -> void:
 	pass
 
 
+#region signal functions
 func _on_spawn_timer_timeout() -> void:
 	var item = item_scene.instantiate()
+	# choose a random type
 	item.type = randi_range(0, Globals.ITEMS.size()-1)
+	# choose a random position
 	item.global_position = Globals.get_random_point_in_ellipse()
 	add_child(item)
-		
-	#spawn_timer.start( 7 + randf() * 10)
-	spawn_timer.start(5)
+	# next item spawns between 9 and 15 seconds 
+	spawn_timer.start(9 + randf() * 6)
 
 
 func _on_effect_timer_timeout() -> void:
@@ -63,3 +65,4 @@ func _on_item_picked_up(type: Globals.ITEMS) -> void:
 		tea_picked = true
 		vanilla_chai.show()
 		tea_effect_timer.start(Globals.item_times[Globals.ITEMS.VANILLA_CHAI] - 2)
+#endregion
