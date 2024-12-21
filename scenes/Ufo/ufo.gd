@@ -112,11 +112,12 @@ func manage_laser_animations() -> void:
 func set_target() -> void:
 	if Globals.spawn_system:
 		wandering_target = Globals.spawn_system.get_ufo_position_target()
-		
+		var direction = (wandering_target - global_position).normalized()
+		rotation_degrees = (Vector2(0.0, -1.0).angle_to(direction)*180.0/PI) + ROTATION_OFFSET
 		var position_tweener = get_tree().create_tween()
-		position_tweener.tween_property(self, "position", wandering_target, 5).set_trans(Tween.TRANS_SINE)
+		position_tweener.tween_property(self, "position", wandering_target, LOADING_TIME).set_trans(Tween.TRANS_SINE)
 		
-		behaviour_timer.start(5)
+		behaviour_timer.start(LOADING_TIME)
 #endregion
 
 #region signal functions
@@ -138,7 +139,6 @@ func _on_damage_timer_timeout() -> void:
 
 
 func _on_behaviour_timer_timeout() -> void:
-	
 	current_behaviour = BEHAVIOUR.AIMING
 	
 func _on_loading_laser_timeout() -> void:

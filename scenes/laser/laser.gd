@@ -14,7 +14,7 @@ max_distance
 # direction is expected to be a normalized vector 
 var direction = Vector2(1, 0)
 var speed = 800
-var max_distance = 800
+var max_distance = 2500
 var travelled = 0
 #endregion
 
