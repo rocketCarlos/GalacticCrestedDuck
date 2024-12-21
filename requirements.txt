@@ -21,7 +21,7 @@ MUST HAVE
 NICE TO HAVE
 	[x] duck animations:
 		[x] hit
-	[] PUT PORTLAND IN MUSIC CREDITS
+	[x] PUT PORTLAND IN MUSIC CREDITS
 	[] game feel:
 		[x] particles for laser shots
 		[] particles for laser hits
@@ -37,4 +37,4 @@ NICE TO HAVE
 OPTIONAL
 	[] ufo zig-zags on its way to target position
 	[] high score register
-	[] upgrade background
+	[x] upgrade background
