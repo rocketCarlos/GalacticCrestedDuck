@@ -151,18 +151,19 @@ func _on_area_entered(area: Area2D) -> void:
 	damage_timer.start()
 	modulate = Color(1, 0, 0)
 
-
 func _on_damage_timer_timeout() -> void:
 	modulate = Color(1, 1, 1)
 
-
 func _on_behaviour_timer_timeout() -> void:
-	current_behaviour = BEHAVIOUR.AIMING
+	if not current_behaviour == BEHAVIOUR.EVAPORATING:
+		current_behaviour = BEHAVIOUR.AIMING
 	
 func _on_loading_laser_timeout() -> void:
-	current_behaviour = BEHAVIOUR.LOCKING
+	if not current_behaviour == BEHAVIOUR.EVAPORATING:
+		current_behaviour = BEHAVIOUR.LOCKING
 	
 func _on_locking_timeout() -> void:
-	# after timeout, shooot
-	current_behaviour = BEHAVIOUR.SHOOTING
+	if not current_behaviour == BEHAVIOUR.EVAPORATING:
+		# after timeout, shooot
+		current_behaviour = BEHAVIOUR.SHOOTING
 #endregion

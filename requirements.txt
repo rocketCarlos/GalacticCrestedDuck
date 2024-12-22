@@ -24,8 +24,8 @@ NICE TO HAVE
 	[x] PUT PORTLAND IN MUSIC CREDITS
 	[] game feel:
 		[x] particles for laser shots
-		[] particles for laser hits
-		[] despawning animaions
+		[] particles for laser hits - cancelled
+		[x] despawning animaions
 	[x] power ups:
 			[x] strawberry milk (more hp)
 			[x] vanilla chai (better fire rate)

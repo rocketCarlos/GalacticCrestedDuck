@@ -47,3 +47,5 @@ func _on_score_timer_timeout() -> void:
 
 func _on_game_over() -> void:
 	score_timer.stop()
+	if score > Globals.high_score:
+		Globals.high_score = score

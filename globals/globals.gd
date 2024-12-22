@@ -11,6 +11,8 @@ var spawn_system
 # the center of the screen
 const CENTER_POINT = Vector2(573.0, 326.0) 
 
+var high_score = 0
+
 # signal emitted by the main scene node to restart the game
 signal restart
 # emitted by the duck when the game ends
@@ -36,8 +38,8 @@ enum MOB_TYPE {
 
 # amount of time that an effect is active
 var item_times = {
-	ITEMS.VANILLA_CHAI: 7.0, # seconds of increased fire_rate
-	ITEMS.PHO: 5.0, # seconds of shield and invulnerability
+	ITEMS.VANILLA_CHAI: 7.5, # seconds of increased fire_rate
+	ITEMS.PHO: 6.5, # seconds of shield and invulnerability
 }
 
 # function that generates and return a random point contained in the ellipse that approximates the

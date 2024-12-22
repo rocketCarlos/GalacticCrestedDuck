@@ -12,6 +12,7 @@ Controls the game flow:
 #region scene nodes
 @onready var play_button = $PlayButton
 @onready var game_over_text = $PlayButton/GameOverText
+@onready var high_score_text = $PlayButton/HighScore
 @onready var background_music = $BackgroundMusic
 @onready var play_sound = $PlayButton/PlaySound
 @onready var game_over_sfx = $GameOver
@@ -42,6 +43,8 @@ func _on_game_over() -> void:
 	
 	play_button.show()
 	game_over_text.show()
+	high_score_text.text = "High score: " + str(Globals.high_score)
+	high_score_text.show()
 	
 	background_music.stop()
 	game_over_sfx.play()

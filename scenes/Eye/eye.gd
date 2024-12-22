@@ -18,7 +18,7 @@ Always moves towards the player
 
 #region attributes
 var default_speed = 75
-var angry_speed = 145
+var angry_speed = 150
 var current_speed: float
 # 0 is default, 1 is angry
 var behaviour: int: 
