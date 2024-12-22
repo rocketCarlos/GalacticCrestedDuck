@@ -16,6 +16,7 @@ Controls the game flow:
 @onready var background_music = $BackgroundMusic
 @onready var play_sound = $PlayButton/PlaySound
 @onready var game_over_sfx = $GameOver
+@onready var black_cover = $ColorRect
 #endregion
 
 # packed scenes scenes
@@ -48,6 +49,10 @@ func _on_game_over() -> void:
 	
 	background_music.stop()
 	game_over_sfx.play()
+	
+	# show the black rectangle
+	var tween = get_tree().create_tween()
+	tween.tween_property(black_cover, "color", Color(0, 0, 0, 0.8), 0.5)
 
 func _on_play_button_pressed() -> void:
 	# instantiate the spawn system
@@ -63,6 +68,9 @@ func _on_play_button_pressed() -> void:
 		mob.queue_free()
 	# tell everyone to restart
 	Globals.restart.emit()
+	# vanish the black rectangle
+	var tween = get_tree().create_tween()
+	tween.tween_property(black_cover, "color", Color(Color(0, 0, 0, 0)), 0.5)
 	# hide the play button
 	play_button.hide()
 	play_sound.play()

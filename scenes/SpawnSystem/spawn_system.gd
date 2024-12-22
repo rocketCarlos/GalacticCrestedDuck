@@ -38,14 +38,14 @@ var eyes = [
 	{"ACTION": "wait", "TIME": 4},
 	{"ACTION": "spawn", "INTERVAL": 4, "GROUP": 4, "TIMES": 5},
 	{"ACTION": "wait", "TIME": 5},
-	{"ACTION": "spawn", "INTERVAL": 0.75, "GROUP": 1, "TIMES": 40},
+	{"ACTION": "spawn", "INTERVAL": 0.75, "GROUP": 1, "TIMES": 90},
 	{"ACTION": "wait", "TIME": 0.75},
 	{"ACTION": "spawn", "INTERVAL": 0.60, "GROUP": 1, "TIMES": 10000},
 ]
 
 
 var ufos = [
-	{"ACTION": "wait", "TIME": 110},
+	{"ACTION": "wait", "TIME": 90},
 	{"ACTION": "spawn", "INTERVAL": 10, "GROUP": 1, "TIMES": 5},
 	{"ACTION": "wait", "TIME": 10},
 	{"ACTION": "spawn", "INTERVAL": 5, "GROUP": 1, "TIMES": 5},

@@ -25,6 +25,7 @@ Enemy that wanders around outside the ellipse and stops to aim a laser beam agai
 var laser
 
 const ROTATION_OFFSET = -45.0
+const WANDERING_TIME = 3.5
 # laser beam loading time
 const LOADING_TIME = 5.0
 # laser beam locking time
@@ -131,9 +132,9 @@ func set_target() -> void:
 		var direction = (wandering_target - global_position).normalized()
 		rotation_degrees = (Vector2(0.0, -1.0).angle_to(direction)*180.0/PI) + ROTATION_OFFSET
 		var position_tweener = get_tree().create_tween()
-		position_tweener.tween_property(self, "position", wandering_target, LOADING_TIME).set_trans(Tween.TRANS_SINE)
+		position_tweener.tween_property(self, "position", wandering_target, WANDERING_TIME).set_trans(Tween.TRANS_SINE)
 		
-		behaviour_timer.start(LOADING_TIME)
+		behaviour_timer.start(WANDERING_TIME)
 #endregion
 
 #region signal functions

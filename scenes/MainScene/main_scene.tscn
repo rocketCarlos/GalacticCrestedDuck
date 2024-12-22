@@ -38,8 +38,14 @@ offset_bottom = -275.0
 z_index = 1
 position = Vector2(572, 22)
 
+[node name="ColorRect" type="ColorRect" parent="."]
+z_index = 2
+offset_right = 1152.0
+offset_bottom = 648.0
+color = Color(0, 0, 0, 0.8)
+
 [node name="PlayButton" type="TextureButton" parent="."]
-z_index = 1
+z_index = 5
 texture_filter = 3
 anchors_preset = 8
 anchor_left = 0.5
