@@ -17,12 +17,12 @@ MUST HAVE
 		[x] enemy hit
 	[x] music:
 		[x] background music
-
+	[x] PUT PORTLAND IN MUSIC CREDITS
+	
 NICE TO HAVE
 	[x] duck animations:
 		[x] hit
-	[x] PUT PORTLAND IN MUSIC CREDITS
-	[] game feel:
+	[x] game feel:
 		[x] particles for laser shots
 		[] particles for laser hits - cancelled
 		[x] despawning animaions
@@ -37,6 +37,6 @@ NICE TO HAVE
 OPTIONAL
 	[] ufo zig-zags on its way to target position
 	[x] ufo points towards the movement direction
-	[] high score register
+	[x] high score register
 	[x] upgrade background
 	[] better item times information
