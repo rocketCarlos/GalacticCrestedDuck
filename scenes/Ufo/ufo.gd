@@ -17,8 +17,10 @@ Enemy that wanders around outside the ellipse and stops to aim a laser beam agai
 @onready var hit_sound = $Hit
 @onready var laser_sound = $LaserSound
 @onready var laser_position = $LaserPosition
+@onready var damage_area = $CollisionShape2D
 #endregion
 
+#region attributes
 @export var laser_scene: PackedScene
 var laser
 
@@ -32,7 +34,8 @@ enum BEHAVIOUR {
 	WANDERING,
 	AIMING,
 	LOCKING,
-	SHOOTING
+	SHOOTING,
+	EVAPORATING
 }
 
 var wandering_target
@@ -68,6 +71,10 @@ var current_behaviour: BEHAVIOUR:
 				
 				locking_timer.start()
 
+var evaporating_progress = 0.0
+var evaporation_duration = 0.37
+#endregion
+
 #region ready and process
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -75,9 +82,9 @@ func _ready() -> void:
 	core.type = Globals.MOB_TYPE.UFO
 	
 	set_target()
-	
 	current_behaviour = BEHAVIOUR.WANDERING
-# Called every frame. 'delta' is the elapsed time since the previous frame.
+	ufo_animation.material = ufo_animation.material.duplicate()
+	
 func _process(delta: float) -> void:
 	match current_behaviour:
 		BEHAVIOUR.WANDERING:
@@ -97,6 +104,15 @@ func _process(delta: float) -> void:
 			add_sibling(laser)
 			current_behaviour = BEHAVIOUR.WANDERING
 			set_target()
+		BEHAVIOUR.EVAPORATING:
+			# Incrementa el progreso basado en el delta y la duración
+			evaporating_progress += delta / evaporation_duration
+			if evaporating_progress >= 1.0:
+				evaporating_progress = 1.0
+				queue_free() # Elimina el nodo al final del efecto
+
+			# Actualiza el parámetro del shader
+			ufo_animation.material.set_shader_parameter("progress", evaporating_progress)
 #endregion
 
 #region utility functions
@@ -126,8 +142,10 @@ func _on_area_entered(area: Area2D) -> void:
 	core.hit()
 	# despawn if lost all hp
 	if core.hp <= 0:
+		current_behaviour = BEHAVIOUR.EVAPORATING
+		ufo_animation.material.set_shader_parameter("enabled", true)
+		damage_area.set_deferred("disabled", true)
 		core.die()
-		queue_free()
 	# play the hit sound and show the hit animation
 	hit_sound.play()
 	damage_timer.start()

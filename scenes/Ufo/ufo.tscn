@@ -1,8 +1,9 @@
-[gd_scene load_steps=27 format=3 uid="uid://bnqvgubglfq28"]
+[gd_scene load_steps=29 format=3 uid="uid://bnqvgubglfq28"]
 
 [ext_resource type="Script" path="res://scenes/Ufo/ufo.gd" id="1_u3fi6"]
 [ext_resource type="Texture2D" uid="uid://bbbdc6dgw8ej4" path="res://assets/sprites/ufo-Sheet.png" id="2_hr3dd"]
 [ext_resource type="PackedScene" uid="uid://cx6aereyhoty4" path="res://scenes/laser/laser.tscn" id="2_smlnd"]
+[ext_resource type="Shader" path="res://scenes/Eye/eye.gdshader" id="3_fupr0"]
 [ext_resource type="Texture2D" uid="uid://dfq76xn07i1w7" path="res://assets/sprites/ufo-loading-Sheet.png" id="3_orw1i"]
 [ext_resource type="Texture2D" uid="uid://ocen7dvj5bc" path="res://assets/sprites/ufo_laser.png" id="4_8fy4p"]
 [ext_resource type="PackedScene" uid="uid://cfff6oyvj81gi" path="res://scenes/EnemyCore/enemy_core.tscn" id="5_qxyfn"]
@@ -12,6 +13,11 @@
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_jehxx"]
 radius = 15.5564
 height = 87.6812
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vnlvk"]
+shader = ExtResource("3_fupr0")
+shader_parameter/enabled = false
+shader_parameter/progress = 0.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_tgbbs"]
 atlas = ExtResource("2_hr3dd")
@@ -153,7 +159,6 @@ laser_scene = ExtResource("2_smlnd")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-1, 1)
 rotation = -0.785398
-scale = Vector2(1, 1)
 shape = SubResource("CapsuleShape2D_jehxx")
 debug_color = Color(0.789321, 0.104238, 0.995218, 0.42)
 
@@ -161,6 +166,7 @@ debug_color = Color(0.789321, 0.104238, 0.995218, 0.42)
 position = Vector2(-12, 12)
 
 [node name="Sprite2D" type="AnimatedSprite2D" parent="."]
+material = SubResource("ShaderMaterial_vnlvk")
 sprite_frames = SubResource("SpriteFrames_plns6")
 animation = &"loading1"
 
